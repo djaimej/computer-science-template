@@ -1,0 +1,2 @@
+<input #el type="text" [id]="id()" [value]="controlValue() ?? ''" [placeholder]="placeholder()"
+  [disabled]="isDisabled()" (input)="update(el.value)" />

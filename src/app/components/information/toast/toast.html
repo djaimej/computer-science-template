@@ -1,0 +1,5 @@
+<div class="toast" [class]="color()">
+  <svg-icon [src]="src()"></svg-icon>
+  <span>{{ message() }}</span>
+  <svg-icon class="close" [src]="srcClose" (click)="dismissed.emit()"></svg-icon>
+</div>

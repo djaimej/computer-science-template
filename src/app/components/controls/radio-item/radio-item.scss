@@ -1,0 +1,15 @@
+@use '../radio-base' as *;
+
+@include radio-base(var(--size-08));
+
+.radio {
+  .label {
+    line-height: 1em;
+    margin-left: var(--s-05);
+  }
+
+  .mark {
+    min-height: var(--size-10);
+    min-width: var(--size-10);
+  }
+}

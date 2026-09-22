@@ -1,0 +1,22 @@
+@use '../button-base' as *;
+
+:host {
+  @include host-base;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter, sans-serif;
+    border-radius: var(--s-05);
+    padding: 0 0.5em;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  @include sizes;
+  @include variants;
+}

@@ -1,0 +1,8 @@
+@use '../radio-base' as *;
+
+@include radio-base(var(--size-10));
+
+.radio .mark {
+  width: var(--size-10);
+  height: var(--size-10);
+}

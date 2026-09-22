@@ -1,0 +1,32 @@
+:host {
+  position: relative;
+  display: inline-block;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .drop {
+    // Neutraliza los estilos UA del <dialog> para que left/top manden.
+    position: absolute;
+    margin: 0;
+    right: auto;
+    bottom: auto;
+
+    display: inline-flex;
+    flex-direction: column;
+    z-index: -100;
+    opacity: 0;
+    padding: 0.5em;
+    background-color: var(--white);
+    color: var(--black);
+    border: var(--border);
+    border-radius: var(--s-05);
+
+    &--show {
+      opacity: 1;
+      z-index: 100;
+    }
+  }
+}

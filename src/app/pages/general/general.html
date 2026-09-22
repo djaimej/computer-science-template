@@ -1,0 +1,112 @@
+@if (showResults()) {
+<section class="results-container">
+    @if (results.subjects.length) {
+    <div class="result-section">
+        <p class="title">Asignaturas</p>
+        <ul class="results" type="none">
+            @for (subject of results.subjects; track $index) {
+            <li class="result-item" (click)="viewResult(subject.id, subject.tree[0])">
+                <strong>Semestre {{subject.tree[0] + 1}} > {{subject.name}}</strong>
+            </li>
+            }
+        </ul>
+    </div>
+    }
+    @if (results.topics.length) {
+    <div class="result-section">
+        <p class="title">Temas</p>
+        <ul class="results" type="none">
+            @for (topic of results.topics; track $index) {
+            <li class="result-item">
+                <p>Semestre {{topic.tree[0] + 1}} > {{topic.subjectName}}</p>
+                <strong (click)="viewResult(topic.id, topic.tree[0], topic.tree[1])">{{topic.name}}</strong>
+            </li>
+            }
+        </ul>
+    </div>
+    }
+    @if (results.subtopics.length) {
+    <div class="result-section">
+        <p class="title">Subtemas</p>
+        <ul class="results" type="none">
+            @for (subtopic of results.subtopics; track $index) {
+            <li class="result-item"
+                (click)="viewResult(subtopic.id, subtopic.tree[0], subtopic.tree[1], subtopic.tree[2])">
+                <p>Semestre {{subtopic.tree[0] + 1}} > {{subtopic.subjectName}} > {{subtopic.topicName}}</p>
+                <strong>{{subtopic.name}}</strong>
+            </li>
+            }
+        </ul>
+    </div>
+    }
+</section>
+<div class="results-background"></div>
+}
+<section class="info">
+    <p>Son las ciencias que estudian eventos o fenómenos que involucran computación, permiten el desarrollo de
+        soluciones tecnológicas que involucran Información o datos computables. Su <b>Objetivo principal</b> es el de
+        resolver problemas complejos mediante soluciones <i>eficientes</i>,
+        <i>automatizadas</i> y <i>escalables</i> usando computadoras.
+    </p>
+    <div class="info-lists">
+        <div class="list">
+            <p>Es una disciplina que se enfoca en:</p>
+            <ol type="1">
+                <li><b>Algoritmos</b>: Diseño y análisis de procesos para resolver problemas.</li>
+                <li><b>Estructuras de datos</b>: Organización y almacenamiento eficiente de información.</li>
+                <li><b>Teoría de la computación</b>: Límites de lo que puede ser computado (ej. complejidad
+                    computacional,
+                    máquinas de Turing).</li>
+                <li><b>Programación</b>: Desarrollo de software y lenguajes formales.</li>
+                <li><b>Arquitectura de computadoras</b>: Diseño de hardware y sistemas.</li>
+                <li><b>Inteligencia Artificial</b>: Modelado de comportamientos inteligentes.</li>
+                <li><b>Bases de datos</b>: Gestión y recuperación de información.</li>
+                <li><b>Redes y seguridad</b>: Comunicación entre sistemas y protección de datos.</li>
+            </ol>
+        </div>
+        <div class="list">
+            <p>Relación con otras áreas:</p>
+            <ul>
+                <li><b>Ingeniería de Software</b>: Aplicación práctica para construir sistemas.</li>
+                <li><b>Informática</b>: Uso de tecnología para manejar información.</li>
+                <li><b>Matemáticas</b>: Base teórica (lógica, álgebra, estadística).</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    <h2>PLAN DE ESTUDIOS</h2>
+    @for (semester of semesters; track $index) {
+    <button [ngClass]="{'active': semester.visible}" class="accordion" [disabled]="!semester.subjects.length"
+        (click)="semester.visible = !semester.visible">{{semester.name}}</button>
+    <div [ngClass]="{'visible': semester.visible}" class="panel">
+        <ul class="subjects" type="none">
+            @for (subject of semester.subjects; track $index; let subjectIndex = $index) {
+            <li [id]="subject.id" [ngClass]="{'selected-result': result() == subject.id, 'active': subject.visible}"
+                class="subject" (click)="subject.visible = !subject.visible">
+                {{subject.name}}
+            </li>
+            @if (subject.visible) {
+            <ol type="1" class="topics">
+                @for (topic of subject.topics; track $index) {
+                <li [id]="topic.id" [ngClass]="{'selected-result': result() == topic.id, 'active': topic.visible}"
+                    class="topic" (click)="topic.visible = !topic.visible">{{topic.name}}
+                </li>
+                @if (topic.visible) {
+                <ul type="none" class="subtopics">
+                    @for (subtopic of topic.subtopics; track $index) {
+                    <li [id]="subtopic.id" [ngClass]="{'selected-result': result() == subtopic.id}"
+                        (click)="viewSubtopic(semester.order, subjectIndex + 1, topic.order, subtopic.order)">
+                        {{topic.order}}.{{subtopic.order}} {{subtopic.name}}
+                    </li>
+                    }
+                </ul>
+                }
+                }
+            </ol>
+            }
+            }
+        </ul>
+    </div>
+    }
+</section>

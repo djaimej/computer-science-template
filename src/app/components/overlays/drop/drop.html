@@ -1,0 +1,9 @@
+<app-button-icon #dropButton [variant]="variant()" [size]="size()" [disabled]="disabled()" [icon]="effectiveIcon()"
+  (clicked)="open()">
+  {{ label() }}
+</app-button-icon>
+@if (render()) {
+<dialog #dropContent class="drop" [class.drop--show]="show()" [style.left]="left() + 'px'" [style.top]="top() + 'px'">
+  <ng-content></ng-content>
+</dialog>
+}

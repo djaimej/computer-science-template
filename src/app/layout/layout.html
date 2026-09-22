@@ -1,0 +1,39 @@
+<header [class]="[context().theme, 'accent-' + context().accentColor]">
+  <nav>
+    <h1 class="nav-tittle" (click)="gotToHome()">
+      CIENCIAS DE LA COMPUTACIÓN
+    </h1>
+    <div class="nav-controls">
+      @if (isHome()) {
+      <app-text-field-icon id="input-search" [ngModel]="searchText()" (ngModelChange)="onSearch($event)"
+        [icon]="iconSearch"></app-text-field-icon>
+      } @else if (isMobile()) {
+      <app-button-icon [icon]="iconHome" (clicked)="gotToHome()"></app-button-icon>
+      }
+      @if (pathFound()) {
+      <app-button-icon [disabled]="!prevPath()" [icon]="iconPrev" (clicked)="prev(main)"></app-button-icon>
+      <app-button-icon [disabled]="!nextPath()" [icon]="iconNext" (clicked)="next(main)"></app-button-icon>
+      }
+      <app-button-icon [icon]="iconTheme()" (clicked)="toggleTheme()"></app-button-icon>
+      <app-drop [icon]="iconColor" [position]="position.DOWN" [align]="align.START">
+        @for (accentColor of accentColors; track accentColor) {
+        <app-radio-item class="accent-color-item" [class]="'accent-' + accentColor" name="accent-color"
+          [id]="accentColor" [value]="accentColor" [label]="accentColor"
+          [checked]="context().accentColor === accentColor" (selected)="setAccentColor($event)">
+        </app-radio-item>
+        }
+      </app-drop>
+    </div>
+  </nav>
+</header>
+<main [class]="[context().theme, 'accent-' + context().accentColor]" #main (scroll)="scrollFunction(main)">
+  <router-outlet></router-outlet>
+  @if (scrollButton()) {
+  <app-button-floating-action [icon]="iconUp" (clicked)="scrollToTop(main, 'smooth')"></app-button-floating-action>
+  }
+  <small class="autor">
+    <b>Diego Jaime Jiménez&nbsp;</b>
+    <span>Ingeniero en sistemas computacionales&nbsp;</span>
+    <a href="mailto:d.jaimej@hotmail.com">d.jaimej&#64;hotmail.com</a>
+  </small>
+</main>

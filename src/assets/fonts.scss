@@ -1,0 +1,65 @@
+@import "katex/dist/katex.min.css";
+
+.katex {
+  font-family: KaTeX_Main, "Times New Roman", serif;
+  src: url("/fonts/katex/KaTeX_Main-Regular.woff2") format("woff2"),
+       url("/fonts/katex/KaTeX_Main-Regular.woff") format("woff");
+}
+
+
+@font-face {
+  font-family: 'PatrickHand';
+  src: url('./fonts/patrick-hand/PatrickHand-Regular.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterBlack';
+  src: url('./fonts/inter/Inter-Black.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterBold';
+  src: url('./fonts/inter/Inter-Bold.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterLight';
+  src: url('./fonts/inter/Inter-Light.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterMedium';
+  src: url('./fonts/inter/Inter-Medium.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./fonts/inter/Inter-Regular.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterThin';
+  src: url('./fonts/inter/Inter-Thin.ttf') format('truetype');
+  font-display: swap; /* Evita bloqueo de renderizado */
+  font-weight: normal;
+  font-style: normal;
+}
+

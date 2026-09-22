@@ -1,0 +1,18 @@
+<a (click)="onAction.emit()" class="message-row">
+  @if (imageSrc()) {
+  <div class="icon">
+    <img [src]="imageSrc()" [alt]="label()">
+  </div>
+  } @else {
+  <div class="icon">
+    <svg-icon [src]="src"></svg-icon>
+  </div>
+  }
+  <div class="text">
+    <div class="label-container">
+      <span class="label">{{ label() }}</span>
+      <span class="date">{{ date() }}</span>
+    </div>
+    <span class="description">{{ description() }}</span>
+  </div>
+</a>

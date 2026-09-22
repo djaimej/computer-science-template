@@ -1,0 +1,18 @@
+@if (src) {
+<markdown
+  contextualSelection clipboard mermaid ngPreserveWhitespaces lineHighlight katex
+  [contextualSelectionSubjectId]="subjectId"
+  [src]="src"
+  (error)="onError($event)"
+  [mermaidOptions]="{ theme: context.theme }"
+  [disableSanitizer]="true"
+  ></markdown>
+}
+@if (error) {
+<h1 class="error">{{error}}</h1>
+}
+<!--
+  LIMITACIÓN ACTUAL: la atribución asume UN solo <markdown> por vista.
+  Si en el futuro se montan varios y una selección cruza dos hosts, se atribuye
+  al host que contenga el anchorNode (ver findHost en el servicio).
+-->

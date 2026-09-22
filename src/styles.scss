@@ -1,0 +1,216 @@
+/* You can add global styles to this file, and also import other style files */
+@use "assets/theme.scss";
+@use "assets/fonts.scss";
+
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+/* ============ RESET Y NORMALIZACIÓN ============ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: Inter, sans-serif;
+  line-height: 1.5;
+  font-size: var(--size-11);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+
+  main {
+    overflow-y: auto;
+    height: calc(100dvh - var(--header-height));
+  }
+}
+
+::-webkit-scrollbar {
+  width: var(--size-05);
+  height: var(--size-05);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+}
+
+::selection {
+  background-color: var(--accent-color-light);
+  color: #000;
+}
+
+/* ============ TIPOGRAFÍA ============ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-family: InterBold, sans-serif;
+  margin: 0.25em 0;
+}
+
+h1 {
+  font-size: var(--size-22);
+}
+
+h2 {
+  font-size: var(--size-20);
+}
+
+h3 {
+  font-size: var(--size-18);
+}
+
+h4 {
+  font-size: var(--size-16);
+}
+
+h5 {
+  font-size: var(--size-14);
+}
+
+h6 {
+  font-size: var(--size-12);
+}
+
+p,
+ul,
+li {
+  font-size: var(--size-11);
+}
+
+p {
+  margin-top: 0.5em;
+}
+
+pre,
+pre * {
+  font-size: var(--size-09) !important;
+}
+
+blockquote {
+  color: var(--gray-400);
+  padding-left: 1em;
+  margin: 0.5em 0;
+  border-left: var(--size-03) solid var(--accent-color);
+}
+
+em {
+  color: var(--accent-color);
+}
+
+::marker {
+  color: var(--accent-color);
+}
+
+/* ============ ELEMENTOS INTERACTIVOS ============ */
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+input,
+select,
+textarea {
+  font-family: Inter, sans-serif;
+  border: var(--border);
+  background-color: var(--white);
+  border-radius: var(--s-05);
+  color: var(--black);
+  padding: 0 0.5em;
+  line-height: inherit;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+/* ============ COMPONENTES ============ */
+
+table,
+th,
+td {
+  border-collapse: collapse;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: var(--size-10);
+  margin: 0 auto;
+
+  th,
+  td {
+    padding: 0.3em;
+    text-align: left;
+    border: var(--border);
+  }
+
+  th {
+    font-weight: 700;
+    padding: 0.3em;
+  }
+}
+
+svg-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    path {
+      fill: var(--black);
+    }
+  }
+}
+
+/* ============ UTILIDADES ============ */
+
+.hidden-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pointer-none {
+  pointer-events: none;
+}
+
+/* ============ ANIMACIONES Y TRANSICIONES ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

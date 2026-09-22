@@ -1,0 +1,28 @@
+@use '../button-base' as *;
+
+svg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host {
+  @include host-base;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-20);
+    height: var(--size-20);
+    font-size: var(--size-10);
+    border-radius: 50%;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  @include variants;
+}

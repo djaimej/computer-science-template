@@ -1,0 +1,7 @@
+@if (visible()) {
+<div [class]="'badge ' + type()" animate.enter="slide-enter" animate.leave="slide-leave">
+  <svg-icon [src]="src()"></svg-icon>
+  <span>{{ text() }}</span>
+  <svg-icon class="close" [src]="srcClose" (click)="close()"></svg-icon>
+</div>
+}

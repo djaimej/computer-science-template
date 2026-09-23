@@ -8,4 +8,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.Eager,
 })
-export class App {}
+export class App { }

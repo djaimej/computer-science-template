@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { ComputerScienceService } from '@services/computer-science';
-import { IOrderedObject, ISemesterItem, ISubjectItem, ITopicItem } from '@models/interfaces/general';
+import { ComputerScienceService } from '@domain/services/computer-science';
+import { IOrderedObject, ISemesterItem, ISubjectItem, ITopicItem } from '@domain/interfaces';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 

@@ -7,12 +7,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { ContextualSelection } from '@shared/directives/contextual-selection';
-import { ContextualSelectionService } from '@shared/services/contextual-selection';
-import { ESelectionAction } from '@models/enums';
-import { ISelectedTextContext } from '@models/interfaces/selection';
-import { ContextService } from '@services/context';
-import { IContext } from '@models/interfaces/context';
+import { ContextualSelection } from '@template/directives/contextual-selection';
+import { ContextualSelectionService } from '@template/services/contextual-selection';
+import { ESelectionAction } from '@template/models/enums';
+import { ISelectedTextContext } from '@template/models/interfaces';
+import { ContextService } from '@template/services/context';
 
 @Component({
   selector: 'app-subtopic',

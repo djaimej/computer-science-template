@@ -7,17 +7,16 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { distinctUntilChanged, filter, map, startWith } from 'rxjs';
 
-import { TextFieldIcon } from '@components/form-elements/text-field-icon/text-field-icon';
-import { ButtonIcon } from '@components/buttons/button-icon/button-icon';
-import { ButtonFloatingAction } from '@components/buttons/button-floating-action/button-floating-action';
-import { Drop } from '@components/overlays/drop/drop';
-import { RadioItem } from '@components/controls/radio-item/radio-item';
-import { NATURE_WEATHER, INTERFACE_INTERACTION, ARROWS, OBJECTS_THINGS } from '@shared/constants/icons';
-import { IIcon } from '@models/interfaces/icon';
-import { ETheme, EAccentColor, EPosition, EAlign } from '@models/enums';
-import { IContext } from '@models/interfaces/context';
-import { ComputerScienceService } from '@services/computer-science';
-import { ContextService } from '@services/context';
+import { TextFieldIcon } from '@template/components/form-elements/text-field-icon/text-field-icon';
+import { ButtonIcon } from '@template/components/buttons/button-icon/button-icon';
+import { ButtonFloatingAction } from '@template/components/buttons/button-floating-action/button-floating-action';
+import { Drop } from '@template/components/overlays/drop/drop';
+import { RadioItem } from '@template/components/controls/radio-item/radio-item';
+import { NATURE_WEATHER, INTERFACE_INTERACTION, ARROWS, OBJECTS_THINGS } from '@template/models/icon-library';
+import { IIcon } from '@template/models/interfaces';
+import { EAccentColor, EPosition, EAlign } from '@template/models/enums';
+import { ComputerScienceService } from '@domain/services/computer-science';
+import { ContextService } from '@template/services/context';
 
 @Component({
   selector: 'app-layout',

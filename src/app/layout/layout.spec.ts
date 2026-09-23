@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
-import { ICON_TEST_PROVIDERS } from '@shared/testing/icon-testing';
-import { ComputerScienceService } from '@services/computer-science';
+import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
+import { ComputerScienceService } from '@domain/services/computer-science';
 import { Layout } from './layout';
 
 describe('Layout', () => {

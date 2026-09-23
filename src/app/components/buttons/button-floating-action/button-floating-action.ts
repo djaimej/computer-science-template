@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { IIcon } from '@models/interfaces/icon';
 import { Variant } from '@models/types/properties';
+import { FloatingPosition } from '@models/types';
 import { ButtonType } from '@models/types/button';
 import { INTERFACE_INTERACTION } from '@shared/constants/icons';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -20,6 +21,7 @@ export class ButtonFloatingAction {
   readonly icon = input<IIcon>(INTERFACE_INTERACTION.plus);
   readonly variant = input<Variant>('solid');
   readonly type = input<ButtonType>('button');
+  readonly position = input<FloatingPosition>('bottom right');
   readonly disabled = input(false);
   readonly clicked = output<Event>();
 

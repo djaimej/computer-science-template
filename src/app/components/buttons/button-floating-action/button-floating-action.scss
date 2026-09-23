@@ -10,6 +10,8 @@ svg-icon {
   @include host-base;
 
   button {
+    position: fixed;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +23,22 @@ svg-icon {
     svg {
       width: 1em;
       height: 1em;
+    }
+
+    &.top {
+      top: calc(var(--header-height) + 1em);
+    }
+
+    &.bottom {
+      bottom: 1em;
+    }
+
+    &.right {
+      right: 1em;
+    }
+
+    &.left {
+      left: 1em;
     }
   }
 

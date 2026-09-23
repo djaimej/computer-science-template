@@ -1,4 +1,4 @@
-import { inject, Injectable, NgZone, PLATFORM_ID } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -28,7 +28,6 @@ const SELECTION_CONFIG = {
   providedIn: 'root',
 })
 export class ContextualSelectionService {
-  private readonly zone = inject(NgZone);
   private readonly document = inject(DOCUMENT);
   private readonly overlay = inject(Overlay);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -93,29 +92,27 @@ export class ContextualSelectionService {
   private ensureGlobalListeners(): void {
     if (this.globalListeners || !this.isBrowser) return;
 
-    // Eventos de alta frecuencia fuera de la zona: no deben disparar CD.
-    this.zone.runOutsideAngular(() => {
-      const sub = new Subscription();
+    // Zoneless: estos listeners no disparan CD por sí solos; ya no hace falta runOutsideAngular.
+    const sub = new Subscription();
 
-      sub.add(fromEvent<PointerEvent>(this.document, 'pointerdown', { capture: true })
-        .subscribe((event) => this.onPointerDown(event)));
+    sub.add(fromEvent<PointerEvent>(this.document, 'pointerdown', { capture: true })
+      .subscribe((event) => this.onPointerDown(event)));
 
-      sub.add(fromEvent(this.document, 'pointerup')
-        .subscribe(() => { this.isPointerDown = false; this.evaluate(); }));
+    sub.add(fromEvent(this.document, 'pointerup')
+      .subscribe(() => { this.isPointerDown = false; this.evaluate(); }));
 
-      // Selección por teclado (Shift+flechas). Debounced para no parpadear.
-      sub.add(fromEvent(this.document, 'selectionchange')
-        .pipe(debounceTime(SELECTION_CONFIG.selectionChangeDebounce))
-        .subscribe(() => { if (!this.isPointerDown) this.evaluate(); }));
+    // Selección por teclado (Shift+flechas). Debounced para no parpadear.
+    sub.add(fromEvent(this.document, 'selectionchange')
+      .pipe(debounceTime(SELECTION_CONFIG.selectionChangeDebounce))
+      .subscribe(() => { if (!this.isPointerDown) this.evaluate(); }));
 
-      // Re-posicionamos (no ocultamos) en scroll/resize. rAF para throttle.
-      sub.add(fromEvent(this.document, 'scroll', { capture: true, passive: true })
-        .subscribe(() => this.scheduleReposition()));
-      sub.add(fromEvent(window, 'resize', { passive: true })
-        .subscribe(() => this.scheduleReposition()));
+    // Re-posicionamos (no ocultamos) en scroll/resize. rAF para throttle.
+    sub.add(fromEvent(this.document, 'scroll', { capture: true, passive: true })
+      .subscribe(() => this.scheduleReposition()));
+    sub.add(fromEvent(window, 'resize', { passive: true })
+      .subscribe(() => this.scheduleReposition()));
 
-      this.globalListeners = sub;
-    });
+    this.globalListeners = sub;
   }
 
   private onPointerDown(event: PointerEvent): void {

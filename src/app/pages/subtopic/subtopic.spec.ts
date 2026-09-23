@@ -31,6 +31,6 @@ describe('Subtopic', () => {
   it('arma el src del documento desde los params de la ruta', () => {
     const fixture = create();
     fixture.detectChanges();
-    expect(fixture.componentInstance.src).toBe('documents/semester-1/1/1111.md');
+    expect(fixture.componentInstance.src()).toBe('documents/semester-1/1/1111.md');
   });
 });

@@ -54,6 +54,7 @@
 
     path {
       fill: var(--white);
+      stroke: var(--white);
     }
 
     svg {
@@ -63,6 +64,7 @@
 
   .radio input:checked~path {
     fill: var(--white);
+      stroke: var(--white);
   }
 
   .radio input:checked~.label {

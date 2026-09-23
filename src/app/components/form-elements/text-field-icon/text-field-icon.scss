@@ -17,8 +17,9 @@ svg-icon {
   left: 0.5em;
   font-size: var(--size-10);
   z-index: 1;
-  
+
   path {
     fill: var(--black);
+    stroke: var(--black);
   }
 }

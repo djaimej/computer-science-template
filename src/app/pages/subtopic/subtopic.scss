@@ -1,124 +1,124 @@
 h2 {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 h3 {
-    margin-top: var(--size-21);
+  margin-top: var(--size-21);
 }
 
 ol,
 ul {
-    padding-left: var(--size-10);
+  padding-left: var(--size-10);
 }
 
 .image {
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
 
-    img {
-        max-width: min(50vw, 30em);
-        max-height: 15em
-    }
+  img {
+    max-width: min(50vw, 30em);
+    max-height: 15em
+  }
 }
 
 hr {
-    margin: var(--size-10) 0;
+  margin: var(--size-10) 0;
 }
 
 section {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    gap: var(--size-10);
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  gap: var(--size-10);
 
-    div {
-        width: 100%;
-    }
+  div {
+    width: 100%;
+  }
 }
 
 .error {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .mermaid {
-    margin: 1em 0;
+  margin: 1em 0;
 
-    svg {
-        display: block;
-        margin: 0 auto;
-    }
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
 
-    span.edgeLabel p {
-        background: var(--white) !important;
-        color: var(--black) !important;
-    }
+  span.edgeLabel p {
+    background: var(--white) !important;
+    color: var(--black) !important;
+  }
 
-    .task {
-        fill: #000 !important;
-        stroke: #000 !important;
-    }
+  .task {
+    fill: #000 !important;
+    stroke: #000 !important;
+  }
 
-    .section0 {
-        fill: var(--accent-color) !important;
-    }
+  .section0 {
+    fill: var(--accent-color) !important;
+  }
 }
 
 :not(pre)>code[class*=language-],
 pre[class*=language-] {
-    background: #181818 !important;
+  background: #181818 !important;
 }
 
 .markdown-clipboard-button {
-    border: none;
-    border-radius: 0;
-    background-color: #222;
-    color: #FFF;
-    cursor: pointer;
-    font-size: 11px;
-    padding: 4px 0;
-    width: 50px;
-    transition: all 250ms ease-out;
+  border: none;
+  border-radius: 0;
+  background-color: #222;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 4px 0;
+  width: 50px;
+  transition: all 250ms ease-out;
 }
 
 .markdown-clipboard-button:hover {
-    background-color: #333;
+  background-color: #333;
 }
 
 .markdown-clipboard-button.copied {
-    background-color: var(--accent-color);
-    color: var(--accent-font-color);
+  background-color: var(--accent-color);
+  color: var(--accent-font-color);
 }
 
 /* MERMAID */
 
 g.accent rect {
-    fill: var(--accent-color-light) !important;
-    stroke: var(--accent-color) !important;
+  fill: var(--accent-color-light) !important;
+  stroke: var(--accent-color) !important;
 }
 
 g.accent g span {
-    color: #000 !important;
+  color: #000 !important;
 }
 
 @media (max-width: 800px) {
-    section {
-        flex-direction: column;
-    }
+  section {
+    flex-direction: column;
+  }
 
-    .image {
-        img {
-            max-width: 90vw;
-        }
+  .image {
+    img {
+      max-width: 90vw;
     }
+  }
 
-    .katex-display {
-        max-width: 90vw;
-        overflow-x: auto;
-    }
+  .katex-display {
+    max-width: 90vw;
+    overflow-x: auto;
+  }
 
-    pre {
-        max-width: 90vw;
-    }
+  pre {
+    max-width: 90vw;
+  }
 }

@@ -1,13 +1,16 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation, DestroyRef, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewEncapsulation,
+  inject, signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { ContextualSelection } from '@shared/directives/contextual-selection';
 import { ContextualSelectionService } from '@services/contextual-selection';
 import { ESelectionAction } from '@models/enums';
 import { ISelectedTextContext } from '@models/interfaces/selection';
-import { ActivatedRoute } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ContextService } from '@services/context';
 import { IContext } from '@models/interfaces/context';
 
@@ -16,24 +19,21 @@ import { IContext } from '@models/interfaces/context';
   imports: [MarkdownComponent, ContextualSelection],
   templateUrl: './subtopic.html',
   styleUrl: './subtopic.scss',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.Eager,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.Eager, // sin cambios (pendiente de la nota del informe)
+  encapsulation: ViewEncapsulation.None,
 })
 export class Subtopic implements OnInit {
-  public src: string = '';
-  public error: string = '';
-  public context: IContext;
-
+  private readonly contextService = inject(ContextService);
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly selectionService = inject(ContextualSelectionService);
   private readonly destroyRef = inject(DestroyRef);
-  public readonly subjectId = '2213';
 
-  constructor(
-    private contextService: ContextService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.context = this.contextService.getCurrentContext();
+  readonly subjectId = '2213';
+  readonly src = signal('');
+  readonly error = signal('');
+  readonly context = signal<IContext>(this.contextService.getCurrentContext());
+
+  constructor() {
     this.selectionService.getAction()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(({ type, context }) => {
@@ -41,31 +41,32 @@ export class Subtopic implements OnInit {
       });
   }
 
-  public ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      const semester: string = params.get('semester')!;
-      const subject: string = params.get('subject')!;
-      const file: string = params.get('file')!;
-      this.src = `documents/semester-${semester}/${subject}/${file}.md`;
-    });
-    this.contextService.getContext().subscribe(context => { this.context = context; });
+  ngOnInit(): void {
+    this.activatedRoute.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((params) => {
+        const semester = params.get('semester')!;
+        const subject = params.get('subject')!;
+        const file = params.get('file')!;
+        this.src.set(`documents/semester-${semester}/${subject}/${file}.md`);
+      });
+
+    this.contextService.getContext()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((context) => this.context.set(context));
   }
 
   public onError(error: string | Error): void {
-    const httpErrorResponse = (error as HttpErrorResponse);
-    if (httpErrorResponse.status === 404) {
-      this.error = 'Error 404 - No se encuentra el recurso solicitado';
-    } else {
-      this.error = `Error ${httpErrorResponse.status} - ${httpErrorResponse.statusText}`;
-    }
+    const httpError = error as HttpErrorResponse;
+    this.error.set(
+      httpError.status === 404
+        ? 'Error 404 - No se encuentra el recurso solicitado'
+        : `Error ${httpError.status} - ${httpError.statusText}`,
+    );
   }
 
   /** Punto de extensión: aquí consultarás el glosario / base de conocimiento. */
   private lookupInGlossary(context: ISelectedTextContext): void {
-    // context.text  → término
-    // context.contextBefore / contextAfter → para desambiguar
-    // context.subjectId → de qué subtema proviene
     console.log('Glosario:', context.text, '· subtema', context.subjectId);
   }
-
 }

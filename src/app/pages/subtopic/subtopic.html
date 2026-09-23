@@ -1,15 +1,10 @@
-@if (src) {
-<markdown
-  contextualSelection clipboard mermaid ngPreserveWhitespaces lineHighlight katex
-  [contextualSelectionSubjectId]="subjectId"
-  [src]="src"
-  (error)="onError($event)"
-  [mermaidOptions]="{ theme: context.theme }"
-  [disableSanitizer]="true"
-  ></markdown>
+@if (src()) {
+<markdown contextualSelection clipboard mermaid ngPreserveWhitespaces lineHighlight katex
+  [contextualSelectionSubjectId]="subjectId" [src]="src()" (error)="onError($event)"
+  [mermaidOptions]="{ theme: context().theme }" [disableSanitizer]="true"></markdown>
 }
-@if (error) {
-<h1 class="error">{{error}}</h1>
+@if (error()) {
+<h1 class="error">{{ error() }}</h1>
 }
 <!--
   LIMITACIÓN ACTUAL: la atribución asume UN solo <markdown> por vista.

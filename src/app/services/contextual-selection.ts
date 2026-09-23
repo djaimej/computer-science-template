@@ -38,13 +38,11 @@ export class ContextualSelectionService {
   constructor() {
     // Vínculo reactivo: el estado de selección abre/cierra/posiciona el overlay.
     // El subscribe vive lo que vive el singleton (no se desuscribe).
+    // Sin zone.run: el CD del portal se hace explícito en openOverlay,
+    // así funciona igual con o sin zone.js.
     this.selection.subscribe((context) => {
-      // Operación de baja frecuencia: la corremos dentro de la zona porque
-      // toca el ciclo de vida de un componente Angular (el portal).
-      this.zone.run(() => {
-        if (context) this.openOverlay(context);
-        else this.closeOverlay();
-      });
+      if (context) this.openOverlay(context);
+      else this.closeOverlay();
     });
   }
 
@@ -74,7 +72,7 @@ export class ContextualSelectionService {
   public emitAction(type: ESelectionAction): void {
     const context = this.selection.getValue();
     if (!context) return;
-    this.zone.run(() => this.action.next({ type, context }));
+    this.action.next({ type, context });
     if (SELECTION_CONFIG.closeOnAction) this.clear();
   }
 
@@ -187,7 +185,8 @@ export class ContextualSelectionService {
     this.ensureOverlay();
     this.updateAnchor(context.rect);
     if (!this.overlayRef!.hasAttached()) {
-      this.overlayRef!.attach(new ComponentPortal(SelectionToolbar));
+      const ref = this.overlayRef!.attach(new ComponentPortal(SelectionToolbar));
+      ref.changeDetectorRef.detectChanges(); // pinta la barra sin depender de la zona
     }
     this.overlayRef!.updatePosition();
   }

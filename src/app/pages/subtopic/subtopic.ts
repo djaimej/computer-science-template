@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { ContextualSelection } from '@shared/directives/contextual-selection';
-import { ContextualSelectionService } from '@services/contextual-selection';
+import { ContextualSelectionService } from '@shared/services/contextual-selection';
 import { ESelectionAction } from '@models/enums';
 import { ISelectedTextContext } from '@models/interfaces/selection';
 import { ContextService } from '@services/context';
@@ -31,7 +31,7 @@ export class Subtopic implements OnInit {
   readonly subjectId = '2213';
   readonly src = signal('');
   readonly error = signal('');
-  readonly context = signal<IContext>(this.contextService.getCurrentContext());
+  readonly context = this.contextService.context;
 
   constructor() {
     this.selectionService.getAction()
@@ -50,10 +50,6 @@ export class Subtopic implements OnInit {
         const file = params.get('file')!;
         this.src.set(`documents/semester-${semester}/${subject}/${file}.md`);
       });
-
-    this.contextService.getContext()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((context) => this.context.set(context));
   }
 
   public onError(error: string | Error): void {

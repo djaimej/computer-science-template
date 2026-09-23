@@ -1,41 +1,63 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { ETheme } from '@models/enums';
-import { EAccentColor } from '../models/enums/index';
+import { computed, effect, Injectable, signal } from '@angular/core';
+import { ETheme, EAccentColor } from '@models/enums';
 import { IContext } from '@models/interfaces/context';
 
-@Injectable({
-  providedIn: 'root'
-})
+const STORAGE_KEY = 'context';
+const DEFAULT_CONTEXT: IContext = {
+  theme: ETheme.NEUTRAL,
+  accentColor: EAccentColor.NEUTRO,
+};
+
+@Injectable({ providedIn: 'root' })
 export class ContextService {
-  private context = new Subject<IContext>();
+  private readonly _context = signal<IContext>(this.initialContext());
 
-  /** localStorage puede no existir (SSR, tests, modo privado): acceso tolerante. */
-  private get storage(): Storage | null {
+  /** Estado de solo lectura para las vistas. */
+  readonly context = this._context.asReadonly();
+  readonly theme = computed(() => this._context().theme);
+  readonly accentColor = computed(() => this._context().accentColor);
+  readonly isDark = computed(() => this._context().theme === ETheme.DARK);
+
+  constructor() {
+    // Persistencia reactiva en cada cambio.
+    effect(() => {
+      const context = this._context();
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(context));
+      } catch {
+        /* almacenamiento no disponible (SSR, modo privado) */
+      }
+    });
+  }
+
+  toggleTheme(): void {
+    this._context.update((c) => ({
+      ...c,
+      theme: c.theme === ETheme.DARK ? ETheme.NEUTRAL : ETheme.DARK,
+    }));
+  }
+
+  setTheme(theme: ETheme): void {
+    this._context.update((c) => ({ ...c, theme }));
+  }
+
+  setAccentColor(accentColor: EAccentColor): void {
+    this._context.update((c) => ({ ...c, accentColor }));
+  }
+
+  private initialContext(): IContext {
     try {
-      return typeof localStorage !== 'undefined' ? localStorage : null;
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored) as Partial<IContext>;
+        return {
+          theme: parsed.theme ?? DEFAULT_CONTEXT.theme,
+          accentColor: parsed.accentColor ?? DEFAULT_CONTEXT.accentColor,
+        };
+      }
     } catch {
-      return null;
+      /* almacenamiento no disponible o JSON inválido */
     }
-  }
-
-  public getCurrentContext(): IContext {
-    const stored = this.storage?.getItem('context');
-    if (stored != null) {
-      return JSON.parse(stored);
-    }
-    return {
-      theme: ETheme.NEUTRAL,
-      accentColor: EAccentColor.NEUTRO
-    };
-  }
-
-  public getContext(): Observable<IContext> {
-    return this.context.asObservable();
-  }
-
-  public setContext(context: IContext): void {
-    this.context.next(context);
-    this.storage?.setItem('context', JSON.stringify(context));
+    return DEFAULT_CONTEXT;
   }
 }

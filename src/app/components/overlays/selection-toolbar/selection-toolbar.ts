@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { IIcon } from '@models/interfaces/icon';
-import { ESelectionAction, ETheme } from '@models/enums';
+import { ESelectionAction } from '@models/enums';
 import { OBJECTS_THINGS } from '@shared/constants/icons';
 import { Icon } from '@components/media/icon/icon';
-import { ContextualSelectionService } from '@services/contextual-selection';
-import { IContext } from '@models/interfaces/context';
+import { ContextualSelectionService } from '@shared/services/contextual-selection';
 import { ContextService } from '@services/context';
 
 interface IToolbarAction {
@@ -23,17 +22,12 @@ interface IToolbarAction {
 })
 export class SelectionToolbar {
   private readonly service = inject(ContextualSelectionService);
-  public context: IContext;
-  public theme: typeof ETheme = ETheme;
+  private readonly contextService = inject(ContextService);
+  protected readonly context = this.contextService.context;
 
-  // Lista extensible: añade 'copy', 'highlight', etc. sin tocar el resto.
   public readonly actions: IToolbarAction[] = [
     { type: ESelectionAction.LOOKUP, label: 'Explicar concepto', icon: OBJECTS_THINGS.bookOpen },
   ];
-
-  constructor(private contextService: ContextService) {
-    this.context = this.contextService.getCurrentContext();
-  }
 
   /** Clave UX: evita que el navegador colapse la selección al presionar la barra. */
   public onPointerDown(event: PointerEvent): void {

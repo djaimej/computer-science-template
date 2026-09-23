@@ -1,6 +1,6 @@
-<div [class]="[context.theme]">
+<div [class]="[context().theme]">
   <section
-    [class]="['toolbar', 'accent-' + context.accentColor]"
+    [class]="['toolbar', 'accent-' + context().accentColor]"
     role="toolbar"
     (pointerdown)="onPointerDown($event)"
   >

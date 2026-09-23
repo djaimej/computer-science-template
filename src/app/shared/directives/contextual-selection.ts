@@ -1,5 +1,5 @@
 import { Directive, ElementRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { ContextualSelectionService } from '@services/contextual-selection';
+import { ContextualSelectionService } from '@shared/services/contextual-selection';
 
 @Directive({
   selector: '[contextualSelection]',

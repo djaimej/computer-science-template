@@ -49,9 +49,9 @@ export class Layout implements OnInit {
   readonly align = EAlign;
   readonly accentColors: EAccentColor[] = Object.values(EAccentColor);
 
-  readonly context = signal<IContext>(this.contextService.getCurrentContext());
+  readonly context = this.contextService.context;
   readonly iconTheme = computed<IIcon>(() =>
-    this.context().theme === ETheme.DARK ? NATURE_WEATHER.sun : NATURE_WEATHER.moon,
+    this.contextService.isDark() ? NATURE_WEATHER.sun : NATURE_WEATHER.moon,
   );
 
   readonly searchText = signal('');
@@ -97,19 +97,12 @@ export class Layout implements OnInit {
     this.isMobile.set(window.innerWidth < 768);
   }
 
-  public toggleTheme(theme?: ETheme): void {
-    const next = theme ?? (this.context().theme === ETheme.NEUTRAL ? ETheme.DARK : ETheme.NEUTRAL);
-    this.updateContext({ theme: next });
+  public toggleTheme(): void {
+    this.contextService.toggleTheme();
   }
 
   public setAccentColor(accentColor: string): void {
-    this.updateContext({ accentColor: accentColor as EAccentColor });
-  }
-
-  private updateContext(patch: Partial<IContext>): void {
-    const next: IContext = { ...this.context(), ...patch };
-    this.context.set(next);
-    this.contextService.setContext(next);
+    this.contextService.setAccentColor(accentColor as EAccentColor);
   }
 
   public onSearch(value: string): void {

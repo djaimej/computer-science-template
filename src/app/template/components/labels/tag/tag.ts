@@ -11,10 +11,7 @@ export class Tag {
   readonly dismissible = input(false);
   readonly type = input<'white' | 'black'>('white');
   readonly text = input('');
-
   protected readonly visible = signal(true);
-  protected readonly srcClose =
-    `icons/${INTERFACE_INTERACTION.clearX.library}/${INTERFACE_INTERACTION.clearX.file}`;
 
   close(): void {
     this.visible.set(false);

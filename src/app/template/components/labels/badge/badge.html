@@ -1,6 +1,6 @@
 @if (visible()) {
 <div [class]="'badge ' + type()" animate.enter="slide-enter" animate.leave="slide-leave">
-  <img class="bdg-icon" [src]="src()">
+  <span class="bdg-icon" [style.--icon-url]="iconUrl()" aria-hidden="true"></span>
   <span>{{ text() }}</span>
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="close()">
     <path

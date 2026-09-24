@@ -15,8 +15,8 @@ export class RowItem {
   readonly action = input('');
   readonly onAction = output<void>();
 
-  protected readonly src = computed(() => {
+  protected readonly iconUrl = computed(() => {
     const icon = this.icon();
-    return icon?.file ? `icons/${icon.library}/${icon.file}` : '';
+    return icon != undefined ? `url("icons/${icon.library}/${icon.file}")` : '';
   });
 }

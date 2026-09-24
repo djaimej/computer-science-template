@@ -14,9 +14,7 @@ export class Badge {
   readonly text = input('');
 
   protected readonly visible = signal(true);
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
-  protected readonly srcClose =
-    `icons/${INTERFACE_INTERACTION.clearXSolid.library}/${INTERFACE_INTERACTION.clearXSolid.file}`;
+  readonly iconUrl = computed(() => `url("icons/${this.icon().library}/${this.icon().file}")`);
 
   close(): void {
     this.visible.set(false);

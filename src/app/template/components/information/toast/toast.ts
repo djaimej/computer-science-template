@@ -12,7 +12,5 @@ export class Toast {
   readonly message = input('');
   readonly icon = input<IIcon>({ library: 'interface-interaction', file: 'info-circle.svg' });
   readonly dismissed = output<void>();
-
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
-  protected readonly srcClose = 'icons/interface-interaction/close-exit.svg';
+  protected readonly iconUrl = computed(() => `url("icons/${this.icon().library}/${this.icon().file}")`);
 }

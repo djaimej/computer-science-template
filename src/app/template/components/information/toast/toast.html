@@ -1,5 +1,5 @@
 <div class="toast" [class]="color()">
-  <img class="tst-icon" [src]="src()">
+  <span class="tst-icon" [style.--icon-url]="iconUrl()" aria-hidden="true"></span>
   <span>{{ message() }}</span>
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="close"
     (click)="dismissed.emit()">

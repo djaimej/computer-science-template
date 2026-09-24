@@ -13,10 +13,6 @@ export const routes: Routes = [
         path: ':semester/:subject/:file',
         loadComponent: () => import('./pages/subtopic/subtopic').then((c) => c.Subtopic),
       },
-      {
-        path: 'showcase',
-        loadComponent: () => import('./pages/showcase/showcase').then((c) => c.Showcase),
-      },
     ],
   }
 ];

@@ -14,5 +14,5 @@ import { provideValueAccessor } from '@template/providers/provide-value-accessor
 export class TextFieldIcon extends ValueAccessorBase<string> {
   readonly icon = input<IIcon>(INTERFACE_INTERACTION.search);
   readonly placeholder = input('');
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
+  protected readonly iconUrl = computed(() => `url("icons/${this.icon().library}/${this.icon().file}")`);
 }

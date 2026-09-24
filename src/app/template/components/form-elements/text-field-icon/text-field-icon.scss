@@ -1,3 +1,5 @@
+@use '../../icon-base' as *;
+
 .icon-field {
   position: relative;
   display: flex;
@@ -17,4 +19,5 @@ input {
   left: 0.5em;
   font-size: var(--size-10);
   z-index: 1;
+  @include icon-mask;
 }

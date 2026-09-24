@@ -1,4 +1,5 @@
 @use '../button-base' as *;
+@use '../../icon-base' as *;
 
 svg {
   display: flex;
@@ -21,8 +22,7 @@ svg {
     border-radius: 50%;
 
     .btn-icon {
-      width: 1em;
-      height: 1em;
+      @include icon-mask;
     }
 
     &.top {

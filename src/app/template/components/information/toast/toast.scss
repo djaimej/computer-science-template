@@ -1,3 +1,5 @@
+@use '../../icon-base' as *;
+
 .toast {
   width: 100%;
   height: var(--size-30); // 60px;
@@ -18,6 +20,11 @@
   svg {
     width: var(--size-12); // 24px;
     width: var(--size-12); // 24px;
+    cursor: pointer;
+  }
+
+  .tst-icon {
+    @include icon-mask;
   }
 }
 
@@ -28,10 +35,6 @@
   path {
     fill: var(--white);
     stroke: var(--white);
-  }
-
-  .tst-icon {
-    filter: invert(1);
   }
 }
 

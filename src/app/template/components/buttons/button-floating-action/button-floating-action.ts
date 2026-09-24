@@ -22,10 +22,8 @@ export class ButtonFloatingAction {
   readonly disabled = input(false);
   readonly clicked = output<Event>();
 
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
-  protected readonly classes = computed(
-    () => `${this.variant()} ${this.disabled() ? 'disabled' : ''}`,
-  );
+  protected readonly iconUrl = computed(() => `url("icons/${this.icon().library}/${this.icon().file}")`);
+  protected readonly classes = computed(() => `${this.variant()} ${this.disabled() ? 'disabled' : ''}`);
 
   onClickButton(event: Event): void {
     if (this.disabled()) {

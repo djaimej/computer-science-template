@@ -1,3 +1,5 @@
+@use '../../icon-base' as *;
+
 .row-item {
   width: 100%;
   display: flex;
@@ -15,8 +17,7 @@
     padding-right: 0.5em;
 
     .row-icon {
-      width: var(--size-12);
-      height: var(--size-12);
+      @include icon-mask;
     }
   }
 

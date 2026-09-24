@@ -1,7 +1,7 @@
 <div class="row-item" [class.padding]="padding()">
-  @if (src()) {
+  @if (iconUrl()) {
   <div class="icon">
-    <img class="row-icon" [src]="src()">
+    <span class="row-icon" [style.--icon-url]="iconUrl()" aria-hidden="true"></span>
   </div>
   }
   <div class="text">

@@ -1,3 +1,5 @@
+@use '../../icon-base' as *;
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -17,6 +19,10 @@
     width: 1em;
     height: 1em;
     cursor: pointer;
+  }
+
+  .bdg-icon {
+    @include icon-mask;
   }
 }
 
@@ -48,9 +54,5 @@
       fill: #FFF;
       stroke: #FFF;
     }
-  }
-
-  .bdg-icon {
-    filter: invert(1);
   }
 }

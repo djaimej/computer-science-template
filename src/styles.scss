@@ -92,7 +92,7 @@ h6 {
 p,
 ul,
 li {
-  font-size: var(--size-11);
+  font-family: PatrickHand, sans-serif;
 }
 
 p {
@@ -151,6 +151,11 @@ textarea {
   }
 }
 
+:where(a, button, input, select, textarea):focus-visible {
+  outline: var(--border-width) solid var(--accent-color);
+  outline-offset: 2px;
+}
+
 /* ============ COMPONENTES ============ */
 
 table,
@@ -191,6 +196,46 @@ table {
 .pointer-none {
   pointer-events: none;
 }
+
+
+/* Animación de entrada/salida para elementos (toast, badge, tag) */
+.slide-enter {
+  animation: slide-in 250ms ease-out;
+}
+
+.slide-leave {
+  animation: slide-out 250ms ease-in;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+/* Afordancia del icono de cierre */
+.close {
+  cursor: pointer;
+}
+
 
 /* ============ ANIMACIONES Y TRANSICIONES ============ */
 

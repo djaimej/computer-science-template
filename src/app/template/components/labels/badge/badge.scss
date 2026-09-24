@@ -19,6 +19,13 @@
     @include icon-mask;
   }
 
+  button {
+    background: transparent;
+    color: currentColor;
+    border: none;
+    line-height: 0;
+  }
+
   svg {
     width: 1em;
     height: 1em;

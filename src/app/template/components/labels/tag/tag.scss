@@ -8,6 +8,13 @@
   border-radius: var(--s-05);
   border: var(--border-width) solid;
 
+  button {
+    background: transparent;
+    color: currentColor;
+    border: none;
+    line-height: 0;
+  }
+
   svg {
     width: 1em;
     height: 1em;

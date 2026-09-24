@@ -15,27 +15,26 @@
     padding: 0 0.5em;
   }
 
+  .bdg-icon {
+    @include icon-mask;
+  }
+
   svg {
     width: 1em;
     height: 1em;
     cursor: pointer;
-  }
 
-  .bdg-icon {
-    @include icon-mask;
+    path {
+      fill: currentColor;
+      stroke: currentColor;
+    }
   }
 }
 
 .default {
+  color: var(--black);
   background-color: var(--gray-200);
   border-color: var(--gray-200);
-
-  svg {
-    path {
-      fill: var(--black);
-      stroke: var(--black);
-    }
-  }
 }
 
 .white {
@@ -48,11 +47,4 @@
   color: #FFF;
   background-color: #000;
   border-color: #000;
-
-  svg {
-    path {
-      fill: #FFF;
-      stroke: #FFF;
-    }
-  }
 }

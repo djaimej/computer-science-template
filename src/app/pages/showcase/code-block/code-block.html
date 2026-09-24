@@ -1,0 +1,4 @@
+<div class="code-block">
+  <app-button (clicked)="copy()" size="sm" variant="outline" class="copy" aria-label="Copiar código">{{ copied() ? 'Copied' : 'Copy' }}</app-button>
+  <pre><code>{{ code() }}</code></pre>
+</div>

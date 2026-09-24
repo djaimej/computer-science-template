@@ -5,7 +5,6 @@ import { INTERFACE_INTERACTION } from '@template/models/icon-library';
 
 @Component({
   selector: 'app-icon',
-  imports: [],
   templateUrl: './icon.html',
   styleUrl: './icon.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,5 +13,7 @@ export class Icon {
   readonly icon = input<IIcon>(INTERFACE_INTERACTION.star);
   readonly size = input<Size>('md');
   readonly onAccent = input<boolean>(false);
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
+  protected readonly iconUrl = computed(
+    () => `url("icons/${this.icon().library}/${this.icon().file}")`,
+  );
 }

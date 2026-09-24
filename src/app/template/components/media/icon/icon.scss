@@ -1,3 +1,15 @@
+@use '../../_icon-base' as *; // ajusta la ruta a donde dejes el mixin
+
+.icon {
+  @include icon-mask;
+
+  &.on-accent {
+    background-color: var(--accent-font-color);
+  }
+
+  // negro/blanco según el acento, ya correcto en el tema
+}
+
 .sm {
   font-size: var(--size-06);
 }

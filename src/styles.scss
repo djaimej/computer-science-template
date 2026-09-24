@@ -177,47 +177,6 @@ table {
   }
 }
 
-.neutral {
-  .accent-red .icon.on-accent,
-  .accent-orange .icon.on-accent,
-  .accent-green .icon.on-accent,
-  .accent-lazuli .icon.on-accent,
-  .accent-blue .icon.on-accent,
-  .accent-purple .icon.on-accent,
-  .accent-razzmatazz .icon.on-accent {
-    filter: invert(1) !important;
-  }
-}
-
-.dark {
-  .accent-red .icon.on-accent,
-  .accent-orange .icon.on-accent,
-  .accent-lazuli .icon.on-accent,
-  .accent-blue .icon.on-accent {
-    filter: invert(1);
-  }
-}
-
-.dark .icon:not(.on-accent) {
-  filter: invert(1);
-}
-
-.neutral .solid .btn-icon,
-.dark .outline .btn-icon,
-.dark .ghost .btn-icon {
-  filter: invert(1);
-}
-
-.dark .fld-icon {
-  filter: invert(1);
-}
-
-.dark .default {
-  .bdg-icon {
-    filter: invert(1);
-  }
-}
-
 /* ============ UTILIDADES ============ */
 
 .hidden-scroll {

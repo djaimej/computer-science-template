@@ -22,7 +22,9 @@ export class ButtonIcon {
   readonly disabled = input(false);
   readonly clicked = output<Event>();
 
-  protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
+  protected readonly iconUrl = computed(
+    () => `url("icons/${this.icon().library}/${this.icon().file}")`,
+  );
   protected readonly classes = computed(
     () => `${this.size()} ${this.variant()} ${this.disabled() ? 'disabled' : ''}`,
   );

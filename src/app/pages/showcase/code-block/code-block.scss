@@ -1,0 +1,21 @@
+.code-block {
+  position: relative;
+  margin-top: var(--s-05);
+
+  pre {
+    margin: 0;
+    padding: var(--s-08);
+    overflow-x: auto;
+    background-color: var(--gray-100);
+    border-radius: var(--s-05);
+    font-family: ui-monospace, monospace;
+    font-size: var(--size-06);
+    line-height: 1.6;
+  }
+
+  .copy {
+    position: absolute;
+    top: var(--s-05);
+    right: var(--s-05);
+  }
+}

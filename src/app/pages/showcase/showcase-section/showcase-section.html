@@ -1,0 +1,14 @@
+<section class="doc-section">
+  <header>
+    <h3>{{ title() }}</h3>
+    @if (description()) {
+      <p>{{ description() }}</p>
+    }
+  </header>
+  <div class="doc-example" [class]="justify()">
+    <ng-content></ng-content>
+  </div>
+  @if (code()) {
+    <app-code-block [code]="code()"></app-code-block>
+  }
+</section>

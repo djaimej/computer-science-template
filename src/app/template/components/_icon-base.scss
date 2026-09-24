@@ -1,0 +1,10 @@
+// Recolor de iconos monocromos por CSS mask (sin librería).
+// El icono se pinta con currentColor; el tema ya intercambia --black/--white.
+@mixin icon-mask($size: 1em) {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-url) no-repeat center / contain;
+  mask: var(--icon-url) no-repeat center / contain;
+}

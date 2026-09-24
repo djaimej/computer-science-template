@@ -1,4 +1,5 @@
 @use '../button-base' as *;
+@use '../../_icon-base' as *;
 
 :host {
   @include host-base;
@@ -12,8 +13,7 @@
     padding: 0 0.5em;
 
     .btn-icon {
-      width: 1em;
-      height: 1em;
+      @include icon-mask;
     }
   }
 

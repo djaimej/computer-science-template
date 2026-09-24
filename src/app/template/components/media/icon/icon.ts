@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { IIcon } from '@template/models/interfaces';
 import { Size } from '@template/models/types';
 import { INTERFACE_INTERACTION } from '@template/models/icon-library';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-icon',
-  imports: [AngularSvgIconModule],
+  imports: [],
   templateUrl: './icon.html',
   styleUrl: './icon.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,6 +13,6 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 export class Icon {
   readonly icon = input<IIcon>(INTERFACE_INTERACTION.star);
   readonly size = input<Size>('md');
-  readonly accent = input<boolean>(false);
+  readonly onAccent = input<boolean>(false);
   protected readonly src = computed(() => `icons/${this.icon().library}/${this.icon().file}`);
 }

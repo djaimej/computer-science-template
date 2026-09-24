@@ -1,7 +1,7 @@
 // Estilos compartidos de <app-radio> y <app-radio-item>.
 
 @mixin radio-base($mark-size: var(--size-10)) {
-  svg-icon {
+  svg {
     display: flex;
     align-items: center;
     justify-content: center;

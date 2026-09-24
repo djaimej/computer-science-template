@@ -3,11 +3,9 @@ import { IIcon } from '@template/models/interfaces';
 import { Size, Variant } from '@template/models/types';
 import { ButtonType } from '@template/models/types';
 import { INTERFACE_INTERACTION } from '@template/models/icon-library';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-button-icon',
-  imports: [AngularSvgIconModule],
   templateUrl: './button-icon.html',
   styleUrl: './button-icon.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

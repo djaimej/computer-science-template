@@ -1,6 +1,6 @@
 @use '../button-base' as *;
 
-svg-icon {
+svg {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ svg-icon {
     font-size: var(--size-10);
     border-radius: 50%;
 
-    svg {
+    .btn-icon {
       width: 1em;
       height: 1em;
     }

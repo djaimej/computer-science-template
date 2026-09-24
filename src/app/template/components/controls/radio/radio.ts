@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-radio',
-  imports: [AngularSvgIconModule],
   templateUrl: './radio.html',
   styleUrl: './radio.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

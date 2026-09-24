@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { IIcon } from '@template/models/interfaces';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-toast',
-  imports: [AngularSvgIconModule],
   templateUrl: './toast.html',
   styleUrl: './toast.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

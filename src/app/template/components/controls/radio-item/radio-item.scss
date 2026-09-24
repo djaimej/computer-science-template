@@ -1,6 +1,6 @@
 @use '../radio-base' as *;
 
-@include radio-base(var(--size-08));
+@include radio-base(var(--size-10));
 
 .radio {
   .label {
@@ -9,7 +9,7 @@
   }
 
   .mark {
-    min-height: var(--size-10);
-    min-width: var(--size-10);
+    min-height: var(--size-12);
+    min-width: var(--size-12);
   }
 }

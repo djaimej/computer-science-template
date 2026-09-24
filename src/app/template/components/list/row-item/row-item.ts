@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { IIcon } from '@template/models/interfaces';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-row-item',
-  imports: [AngularSvgIconModule],
   templateUrl: './row-item.html',
   styleUrl: './row-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

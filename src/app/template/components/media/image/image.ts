@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-image',
-  imports: [AngularSvgIconModule],
   templateUrl: './image.html',
   styleUrl: './image.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

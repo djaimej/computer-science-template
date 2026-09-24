@@ -29,6 +29,10 @@
     fill: var(--white);
     stroke: var(--white);
   }
+
+  .tst-icon {
+    filter: invert(1);
+  }
 }
 
 .white {

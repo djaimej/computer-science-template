@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { INTERFACE_INTERACTION } from '@template/models/icon-library';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-tag',
-  imports: [AngularSvgIconModule],
   templateUrl: './tag.html',
   styleUrl: './tag.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

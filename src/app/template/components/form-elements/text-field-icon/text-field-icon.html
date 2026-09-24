@@ -1,5 +1,5 @@
 <div class="icon-field">
-  <svg-icon [src]="src()"></svg-icon>
+  <img class="fld-icon" [src]="src()">
   <input #el type="text" [id]="id()" [value]="controlValue() ?? ''" [placeholder]="placeholder()"
     [disabled]="isDisabled()" (input)="update(el.value)" />
 </div>

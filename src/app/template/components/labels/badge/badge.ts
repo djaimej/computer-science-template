@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { IIcon } from '@template/models/interfaces';
 import { INTERFACE_INTERACTION } from '@template/models/icon-library';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-badge',
-  imports: [AngularSvgIconModule],
   templateUrl: './badge.html',
   styleUrl: './badge.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

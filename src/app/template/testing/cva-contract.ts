@@ -13,7 +13,7 @@ export interface CvaContractOptions<T> {
   readonly readView: (native: HTMLInputElement) => T;
   /** Simula interacción del usuario; devuelve el valor que debería emitir. */
   readonly userInput: (native: HTMLInputElement) => T;
-  /** Providers extra (p. ej. svg-icon + HTTP de pruebas). */
+  /** Providers extra (p. ej. HTTP de pruebas). */
   readonly providers?: readonly (Provider | EnvironmentProviders)[];
   /** false mientras el componente no refleje writeValue en el DOM (se salta ese caso). */
   readonly writeValueReflects?: boolean;

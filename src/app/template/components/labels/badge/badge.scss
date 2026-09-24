@@ -16,27 +16,41 @@
   svg {
     width: 1em;
     height: 1em;
+    cursor: pointer;
   }
 }
 
 .default {
   background-color: var(--gray-200);
   border-color: var(--gray-200);
-}
-
-.white {
-  border-color: var(--gray-200);
-}
-
-.black {
-  color: var(--white);
-  background-color: var(--black);
-  border-color: var(--black);
 
   svg {
     path {
-      fill: var(--white);
-      stroke: var(--white);
+      fill: var(--black);
+      stroke: var(--black);
     }
+  }
+}
+
+.white {
+  color: #000;
+  background-color: #FFF;
+  border-color: #FFF;
+}
+
+.black {
+  color: #FFF;
+  background-color: #000;
+  border-color: #000;
+
+  svg {
+    path {
+      fill: #FFF;
+      stroke: #FFF;
+    }
+  }
+
+  .bdg-icon {
+    filter: invert(1);
   }
 }

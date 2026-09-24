@@ -6,7 +6,7 @@
   >
     @for (action of actions; track action.type) {
     <button type="button" class="toolbar__button" (click)="run(action.type)">
-      <app-icon [icon]="action.icon" size="md" [accent]="true" />
+      <app-icon [icon]="action.icon" size="md" [onAccent]="true" />
       <span class="toolbar__label">{{ action.label }}</span>
     </button>
     }

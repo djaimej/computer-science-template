@@ -44,11 +44,6 @@
     background-color: var(--black);
     border: var(--border);
 
-    path {
-      fill: var(--white);
-      stroke: var(--white);
-    }
-
     &:active:not(:disabled) {
       background-color: var(--gray-600);
       border-color: var(--gray-600);
@@ -60,25 +55,15 @@
     background-color: var(--white);
     border: var(--border);
 
-    path {
-      fill: var(--black);
-      stroke: var(--black);
-    }
-
     &:active:not(:disabled) {
       background-color: var(--gray-100);
     }
   }
 
   &.ghost button {
-    color: currentColor;
-    background-color: transparent;
+    color: var(--black);
+    background-color: var(--white);
     border: none;
-
-    path {
-      fill: var(--black);
-      stroke: var(--black);
-    }
 
     &:active:not(:disabled) {
       background-color: var(--gray-100);

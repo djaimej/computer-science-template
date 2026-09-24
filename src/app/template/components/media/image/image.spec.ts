@@ -12,7 +12,7 @@ describe('Image', () => {
     const fixture = create();
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('img')).toBeNull();
-    expect(fixture.nativeElement.querySelector('svg-icon')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('svg')).toBeTruthy();
   });
 
   it('muestra la imagen cuando se fija src', () => {
@@ -22,7 +22,7 @@ describe('Image', () => {
     const img = fixture.nativeElement.querySelector('img') as HTMLImageElement | null;
     expect(img).toBeTruthy();
     expect(img?.getAttribute('src')).toBe('photo.jpg');
-    expect(fixture.nativeElement.querySelector('svg-icon')).toBeNull();
+    expect(fixture.nativeElement.querySelector('svg')).toBeNull();
   });
 
   it('fuerza ratio 1 en círculos e ignora el ratio recibido', () => {

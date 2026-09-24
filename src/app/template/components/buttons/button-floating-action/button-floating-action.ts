@@ -3,11 +3,9 @@ import { IIcon } from '@template/models/interfaces';
 import { FloatingPosition, Variant } from '@template/models/types';
 import { ButtonType } from '@template/models/types';
 import { INTERFACE_INTERACTION } from '@template/models/icon-library';
-import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-button-floating-action',
-  imports: [AngularSvgIconModule],
   templateUrl: './button-floating-action.html',
   styleUrl: './button-floating-action.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,6 +1,6 @@
 import {
   ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewEncapsulation,
-  inject, signal,
+  inject, signal
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,7 @@ import { ContextualSelectionService } from '@template/services/contextual-select
 import { ESelectionAction } from '@template/models/enums';
 import { ISelectedTextContext } from '@template/models/interfaces';
 import { ContextService } from '@template/services/context';
+import { MarkdownAssetsLoader } from '@template/services/markdown-assets';
 
 @Component({
   selector: 'app-subtopic',
@@ -26,6 +27,8 @@ export class Subtopic implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly selectionService = inject(ContextualSelectionService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly assets = inject(MarkdownAssetsLoader);
+  readonly libsReady = signal(false);
 
   readonly subjectId = '2213';
   readonly src = signal('');
@@ -38,6 +41,9 @@ export class Subtopic implements OnInit {
       .subscribe(({ type, context }) => {
         if (type === ESelectionAction.LOOKUP) this.lookupInGlossary(context);
       });
+    this.assets.load()
+      .then(() => this.libsReady.set(true))
+      .catch(() => this.error.set('No se pudieron cargar los recursos de contenido'));
   }
 
   ngOnInit(): void {
@@ -56,7 +62,7 @@ export class Subtopic implements OnInit {
     this.error.set(
       httpError.status === 404
         ? 'Error 404 - No se encuentra el recurso solicitado'
-        : `Error ${httpError.status} - ${httpError.statusText}`,
+        : `Error ${httpError.status} - ${httpError.message}`,
     );
   }
 

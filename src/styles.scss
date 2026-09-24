@@ -5,7 +5,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
 
-/* ============ RESET Y NORMALIZACIÓN ============ */
+/* RESET Y NORMALIZACIÓN */
 *,
 *::before,
 *::after {
@@ -52,7 +52,7 @@ body {
   color: #000;
 }
 
-/* ============ TIPOGRAFÍA ============ */
+/* TIPOGRAFÍA */
 
 h1,
 h2,
@@ -119,7 +119,7 @@ em {
   color: var(--accent-color);
 }
 
-/* ============ ELEMENTOS INTERACTIVOS ============ */
+/* ELEMENTOS */
 
 a {
   color: var(--accent-color);
@@ -156,8 +156,6 @@ textarea {
   outline-offset: 2px;
 }
 
-/* ============ COMPONENTES ============ */
-
 table,
 th,
 td {
@@ -182,7 +180,7 @@ table {
   }
 }
 
-/* ============ UTILIDADES ============ */
+/* UTILIDADES */
 
 .hidden-scroll {
   -ms-overflow-style: none;
@@ -197,8 +195,6 @@ table {
   pointer-events: none;
 }
 
-
-/* Animación de entrada/salida para elementos (toast, badge, tag) */
 .slide-enter {
   animation: slide-in 250ms ease-out;
 }
@@ -231,13 +227,38 @@ table {
   }
 }
 
-/* Afordancia del icono de cierre */
 .close {
   cursor: pointer;
 }
 
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
 
-/* ============ ANIMACIONES Y TRANSICIONES ============ */
+  span {
+    width: calc(6 * var(--size-03));
+    height: calc(6 * var(--size-03));
+    border: solid var(--s-03) currentColor;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-flex;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * {

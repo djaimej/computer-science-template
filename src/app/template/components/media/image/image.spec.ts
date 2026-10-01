@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 import { Image } from './image';
 
 describe('Image', () => {
   const create = () => {
-    TestBed.configureTestingModule({ imports: [Image], providers: [...ICON_TEST_PROVIDERS] });
+    TestBed.configureTestingModule({ imports: [Image] });
     return TestBed.createComponent(Image);
   };
 

@@ -1,23 +1,42 @@
+import { TestBed } from '@angular/core/testing';
 import { RowItem } from './row-item';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 
 describe('RowItem', () => {
-  let component: RowItem;
-  let fixture: ComponentFixture<RowItem>;
+  const create = () => {
+    TestBed.configureTestingModule({ imports: [RowItem] });
+    return TestBed.createComponent(RowItem);
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RowItem],
-      providers: [...ICON_TEST_PROVIDERS],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(RowItem);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('se crea', () => {
+    const f = create(); f.detectChanges();
+    expect(f.componentInstance).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('renderiza label y description', () => {
+    const f = create();
+    f.componentRef.setInput('label', 'Título');
+    f.componentRef.setInput('description', 'Detalle');
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('.label').textContent).toContain('Título');
+    expect(f.nativeElement.querySelector('.description').textContent).toContain('Detalle');
+  });
+
+  it('muestra el icono solo cuando hay icon', () => {
+    const f = create();
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('.row-icon')).toBeNull();
+    f.componentRef.setInput('icon', { library: 'interface-interaction', file: 'check.svg' });
+    f.detectChanges();
+    expect(f.nativeElement.querySelector('.row-icon')).toBeTruthy();
+  });
+
+  it('emite onAction al hacer click en la acción', () => {
+    const f = create();
+    f.componentRef.setInput('action', 'edit');
+    f.detectChanges();
+    const spy = vi.fn();
+    f.componentInstance.onAction.subscribe(spy);
+    (f.nativeElement.querySelector('.action') as HTMLElement).click();
+    expect(spy).toHaveBeenCalled();
   });
 });

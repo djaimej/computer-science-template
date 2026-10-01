@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 import { RadioItem } from './radio-item';
 
 describe('RadioItem', () => {
   const create = () => {
-    TestBed.configureTestingModule({ imports: [RadioItem], providers: [...ICON_TEST_PROVIDERS] });
+    TestBed.configureTestingModule({ imports: [RadioItem] });
     const fixture = TestBed.createComponent(RadioItem);
     const input = () => fixture.nativeElement.querySelector('input[type="radio"]') as HTMLInputElement;
     return { fixture, input };

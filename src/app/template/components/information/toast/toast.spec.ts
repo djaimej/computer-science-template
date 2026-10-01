@@ -1,17 +1,33 @@
 import { TestBed } from '@angular/core/testing';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 import { Toast } from './toast';
 
 describe('Toast', () => {
-  it('emits dismissed when the close icon is clicked', () => {
-    TestBed.configureTestingModule({ imports: [Toast], providers: [...ICON_TEST_PROVIDERS] });
-    const fixture = TestBed.createComponent(Toast);
-    fixture.detectChanges();
+  const create = () => {
+    TestBed.configureTestingModule({ imports: [Toast] });
+    return TestBed.createComponent(Toast);
+  };
 
-    let count = 0;
-    fixture.componentInstance.dismissed.subscribe(() => count++);
-    (fixture.nativeElement.querySelector('.close') as HTMLElement).dispatchEvent(new MouseEvent('click'));
+  it('se crea', () => {
+    const f = create(); f.detectChanges();
+    expect(f.componentInstance).toBeTruthy();
+  });
 
-    expect(count).toBe(1);
+  it('renderiza mensaje y color', () => {
+    const f = create();
+    f.componentRef.setInput('message', 'Guardado');
+    f.componentRef.setInput('color', 'white');
+    f.detectChanges();
+    const toast = f.nativeElement.querySelector('.toast') as HTMLElement;
+    expect(toast.classList).toContain('white');
+    expect(toast.textContent).toContain('Guardado');
+  });
+
+  it('emite dismissed al hacer click en cerrar', () => {
+    const f = create();
+    f.detectChanges();
+    const spy = vi.fn();
+    f.componentInstance.dismissed.subscribe(spy);
+    (f.nativeElement.querySelector('.close') as SVGElement).dispatchEvent(new MouseEvent('click'));
+    expect(spy).toHaveBeenCalled();
   });
 });

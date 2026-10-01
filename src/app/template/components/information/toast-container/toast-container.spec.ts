@@ -1,6 +1,5 @@
 import { ToastContainer } from './toast-container';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 
 describe('ToastContainer', () => {
   let component: ToastContainer;
@@ -9,7 +8,6 @@ describe('ToastContainer', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ToastContainer],
-      providers: [...ICON_TEST_PROVIDERS],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastContainer);

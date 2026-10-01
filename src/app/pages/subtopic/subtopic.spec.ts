@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { provideMarkdown } from 'ngx-markdown';
 import { of } from 'rxjs';
-import { ICON_TEST_PROVIDERS } from '@template/testing/icon-testing';
 import { Subtopic } from './subtopic';
 import { MarkdownAssetsLoader } from '@template/services/markdown-assets';
 
@@ -15,7 +14,6 @@ describe('Subtopic', () => {
     TestBed.configureTestingModule({
       imports: [Subtopic],
       providers: [
-        ...ICON_TEST_PROVIDERS,
         provideMarkdown(),
         { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: MarkdownAssetsLoader, useValue: { load: () => Promise.resolve() } },

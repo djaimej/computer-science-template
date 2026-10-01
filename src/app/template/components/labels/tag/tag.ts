@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { INTERFACE_INTERACTION } from '@template/models/icon-library';
 
 @Component({
   selector: 'app-tag',

@@ -1,6 +1,7 @@
 import {
-  ChangeDetectionStrategy, Component, DestroyRef, OnInit,
+  ChangeDetectionStrategy, Component, DestroyRef, ElementRef, OnInit,
   computed, inject, signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -29,10 +30,12 @@ import { ContextService } from '@template/services/context';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(window:resize)': 'onResize()',
+    '(document:keyup)': 'onDocumentKeyup($event)',
   },
 })
 export class Layout implements OnInit {
   private readonly computerScienceService = inject(ComputerScienceService);
+  private readonly main = viewChild<ElementRef<HTMLElement>>('main');
   private readonly contextService = inject(ContextService);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
@@ -77,7 +80,10 @@ export class Layout implements OnInit {
         distinctUntilChanged(),
         takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe((url) => this.updateNav(url));
+      .subscribe((url) => {
+        this.updateNav(url);
+        this.scrollToTop('auto');
+      });
   }
 
   private updateNav(url: string): void {
@@ -114,27 +120,43 @@ export class Layout implements OnInit {
     }
   }
 
-  public async prev(main: HTMLElement): Promise<void> {
-    await this.router.navigate([this.prevPath()]);
-    this.scrollToTop(main, 'auto');
+  public prev(): void {
+    const path = this.prevPath();
+    if (path) this.router.navigate([path]);
   }
 
-  public async next(main: HTMLElement): Promise<void> {
-    await this.router.navigate([this.nextPath()]);
-    this.scrollToTop(main, 'auto');
+  public next(): void {
+    const path = this.nextPath();
+    if (path) this.router.navigate([path]);
   }
 
-  public scrollToTop(main: HTMLElement, behavior: ScrollBehavior): void {
-    main.scrollTo({ top: 0, behavior });
+  public scrollToTop(behavior: ScrollBehavior = 'smooth'): void {
+    this.main()?.nativeElement.scrollTo({ top: 0, behavior });
   }
 
-  public scrollFunction(main: HTMLElement): void {
-    this.scrollButton.set(main.scrollTop > 100);
+  public scrollFunction(): void {
+    const el = this.main()?.nativeElement;
+    this.scrollButton.set((el?.scrollTop ?? 0) > 100);
   }
 
   public gotToHome(): void {
     this.isHome.set(true);
     this.pathFound.set(false);
     this.router.navigate(['/']);
+  }
+
+  protected onDocumentKeyup(event: KeyboardEvent): void {
+    if (!this.pathFound()) return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+    const el = event.target as HTMLElement | null;
+    if (el?.closest('input, textarea, select, [contenteditable="true"]')) return;
+
+    const target =
+      event.key === 'ArrowRight' ? this.nextPath() :
+        event.key === 'ArrowLeft' ? this.prevPath() :
+          '';
+
+    if (target) this.router.navigate([target]);
   }
 }

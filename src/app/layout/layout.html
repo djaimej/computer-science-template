@@ -11,8 +11,8 @@
       <app-button-icon [icon]="iconHome" (clicked)="gotToHome()"></app-button-icon>
       }
       @if (pathFound()) {
-      <app-button-icon [disabled]="!prevPath()" [icon]="iconPrev" (clicked)="prev(main)"></app-button-icon>
-      <app-button-icon [disabled]="!nextPath()" [icon]="iconNext" (clicked)="next(main)"></app-button-icon>
+      <app-button-icon [disabled]="!prevPath()" [icon]="iconPrev" (clicked)="prev()"></app-button-icon>
+      <app-button-icon [disabled]="!nextPath()" [icon]="iconNext" (clicked)="next()"></app-button-icon>
       }
       <app-button-icon [icon]="iconTheme()" (clicked)="toggleTheme()"></app-button-icon>
       <app-drop [icon]="iconColor" [position]="position.DOWN" [align]="align.START">
@@ -26,10 +26,10 @@
     </div>
   </nav>
 </header>
-<main [class]="[context().theme, 'accent-' + context().accentColor]" #main (scroll)="scrollFunction(main)">
+<main [class]="[context().theme, 'accent-' + context().accentColor]" #main (scroll)="scrollFunction()">
   <router-outlet></router-outlet>
   @if (scrollButton()) {
-  <app-button-floating-action [icon]="iconUp" (clicked)="scrollToTop(main, 'smooth')"></app-button-floating-action>
+  <app-button-floating-action [icon]="iconUp" (clicked)="scrollToTop()"></app-button-floating-action>
   }
   <small class="autor">
     <b>Diego Jaime Jiménez&nbsp;</b>

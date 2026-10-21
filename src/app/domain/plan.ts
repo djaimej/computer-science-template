@@ -55,16 +55,16 @@ export class Plan {
     private static parseSubjects(semester: number, semesterSubjects: IRawSubject[]): ISubjectItem[] {
         const subjects: ISubjectItem[] = semesterSubjects.map((subject, sjI) => {
             return {
-                id: `subject-${semester}${sjI}`,
+                id: `subject-${semester}${sjI + 1}`,
                 order: sjI + 1,
                 name: subject.name,
                 topics: subject.topics.map((topic, toI) => {
                     return {
-                        id: `topic-${semester}${sjI}${toI}`,
+                        id: `topic-${semester}${sjI + 1}${toI + 1}`,
                         name: topic.name,
                         order: toI + 1,
                         subtopics: topic.subtopics.map((subtopic, stI) => {
-                            return { id: `subtopic-${semester}${sjI}${toI}${stI}`, name: subtopic, order: stI + 1, path: `${semester}/${sjI + 1}/${semester}${sjI + 1}${toI + 1}${stI + 1}` }
+                            return { id: `subtopic-${semester}${sjI + 1}${toI + 1}${stI + 1}`, name: subtopic, order: stI + 1, path: `${semester}/${sjI + 1}/${semester}${sjI + 1}${toI + 1}${stI + 1}` }
                         }),
                         visible: false
                     }

@@ -18,6 +18,7 @@ import { IIcon } from '@template/models/interfaces';
 import { EAccentColor, EPosition, EAlign } from '@template/models/enums';
 import { ComputerScienceService } from '@domain/services/computer-science';
 import { ContextService } from '@template/services/context';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-layout',
@@ -39,6 +40,7 @@ export class Layout implements OnInit {
   private readonly contextService = inject(ContextService);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly title = inject(Title);
 
   readonly iconHome: IIcon = OBJECTS_THINGS.home;
   readonly iconColor: IIcon = OBJECTS_THINGS.palette;
@@ -82,19 +84,21 @@ export class Layout implements OnInit {
       )
       .subscribe((url) => {
         this.updateNav(url);
-        this.scrollToTop('auto');
+        this.scrollToTop();
       });
   }
 
   private updateNav(url: string): void {
     if (this.isHome()) return;
     this.paths = this.computerScienceService.getAllSubtopicPaths();
-    const file = url.split('/')[3];
-    const index = this.paths.findIndex((path) => path.includes(`/${file}`));
+    const pathId = url.split('/')[3];
+    const index = this.paths.findIndex((path) => path.includes(`/${pathId}`));
     this.pathFound.set(index >= 0);
-    if (index >= 0) {
+    if (this.pathFound()) {
       this.prevPath.set(this.paths[index - 1] ?? '');
       this.nextPath.set(index < this.paths.length - 1 ? this.paths[index + 1] : '');
+      const subtopicTitle = this.computerScienceService.getSubjectNameByPath(pathId);
+      this.title.setTitle(subtopicTitle);
     }
   }
 
@@ -130,8 +134,8 @@ export class Layout implements OnInit {
     if (path) this.router.navigate([path]);
   }
 
-  public scrollToTop(behavior: ScrollBehavior = 'smooth'): void {
-    this.main()?.nativeElement.scrollTo({ top: 0, behavior });
+  public scrollToTop(): void {
+    this.main()?.nativeElement.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   public scrollFunction(): void {

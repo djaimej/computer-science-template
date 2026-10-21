@@ -22,6 +22,13 @@ export class ComputerScienceService {
     return this.plan.subtopicPaths;
   }
 
+  public getSubjectNameByPath(pathId: string): string {
+    const se = Number.parseInt(pathId.charAt(0)) - 1;
+    const su = Number.parseInt(pathId.charAt(1)) - 1;
+    const subjectName = this.plan.semesters[se].subjects[su].name;
+    return `${subjectName} ${pathId}`;
+  }
+
   public getSearchText(): Observable<string | null> {
     return this.searchText.asObservable();
   }

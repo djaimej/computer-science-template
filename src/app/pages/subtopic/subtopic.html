@@ -1,6 +1,6 @@
 @if (libsReady() && src()) {
 <markdown contextualSelection clipboard mermaid ngPreserveWhitespaces lineHighlight katex
-  [contextualSelectionSubjectId]="subjectId" [src]="src()" (error)="onError($event)"
+  [contextualSelectionContext]="{subject:subject(), semester: semester()}" [src]="src()" (error)="onError($event)"
   [mermaidOptions]="{ theme: context().theme }" [disableSanitizer]="true"></markdown>
 } @else {
   <div class="loader"><span></span></div>

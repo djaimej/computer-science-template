@@ -15,7 +15,8 @@ export interface ISelectedTextContext {
   rect: DOMRect;
   range: Range;
   hostElement: HTMLElement;
-  subjectId?: string;
+  subject: number;
+  semester: number;
   contextBefore?: string;
   contextAfter?: string;
 }

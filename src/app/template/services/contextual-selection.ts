@@ -9,13 +9,16 @@ import { ESelectionAction } from '@template/models/enums';
 import { ISelectedTextContext, ISelectionAction } from '@template/models/interfaces';
 import { SelectionToolbar } from '@template/components/overlays/selection-toolbar/selection-toolbar';
 
-interface IHostMeta {
-  subjectId?: string;
+export interface IHostMeta {
+  subject: number;
+  semester: number;
 }
 
 const SELECTION_CONFIG = {
   /** Caracteres mínimos (tras trim) para mostrar la barra. */
-  minSelectionLength: 2,
+  minSelectionLength: 1,
+  /** Caracteres máximos (tras trim). */
+  maxSelectionLength: 100,
   /** Caracteres de contexto antes/después a capturar. */
   contextChars: 160,
   /** Debounce (ms) para selección por teclado. */
@@ -67,9 +70,9 @@ export class ContextualSelectionService {
     return this.selection.getValue();
   }
 
-  public register(host: HTMLElement, subjectId?: string): void {
+  public register(host: HTMLElement, context: IHostMeta): void {
     if (!this.isBrowser) return;
-    this.hosts.set(host, { subjectId });
+    this.hosts.set(host, context);
     this.ensureGlobalListeners();
   }
 
@@ -131,7 +134,7 @@ export class ContextualSelectionService {
     }
 
     const text = selection.toString().trim();
-    if (text.length < SELECTION_CONFIG.minSelectionLength) return this.clear();
+    if (text.length > SELECTION_CONFIG.maxSelectionLength || text.length < SELECTION_CONFIG.minSelectionLength) return this.clear();
 
     const host = this.findHost(selection.anchorNode);
     if (!host) return this.clear(); // selección fuera de cualquier <markdown>
@@ -147,7 +150,8 @@ export class ContextualSelectionService {
       rect,
       range: range.cloneRange(),
       hostElement: host.el,
-      subjectId: host.meta.subjectId,
+      subject: host.meta.subject,
+      semester: host.meta.semester,
       contextBefore,
       contextAfter,
     });

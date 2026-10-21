@@ -1,7 +1,4 @@
-import {
-  ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewEncapsulation,
-  inject, signal
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, ViewEncapsulation, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,6 +10,7 @@ import { ESelectionAction } from '@template/models/enums';
 import { ISelectedTextContext } from '@template/models/interfaces';
 import { ContextService } from '@template/services/context';
 import { MarkdownAssetsLoader } from '@template/services/markdown-assets';
+import { glossary } from '@domain/glossary';
 
 @Component({
   selector: 'app-subtopic',
@@ -30,10 +28,11 @@ export class Subtopic implements OnInit {
   private readonly assets = inject(MarkdownAssetsLoader);
   readonly libsReady = signal(false);
 
-  readonly subjectId = '2213';
   readonly src = signal('');
   readonly error = signal('');
   readonly context = this.contextService.context;
+  readonly subject = signal(1);
+  readonly semester = signal(1);
 
   constructor() {
     this.selectionService.getAction()
@@ -50,10 +49,12 @@ export class Subtopic implements OnInit {
     this.activatedRoute.paramMap
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((params) => {
-        const semester = params.get('semester')!;
-        const subject = params.get('subject')!;
+        const semesterParam = params.get('semester')!;
+        const subjectParam = params.get('subject')!;
         const file = params.get('file')!;
-        this.src.set(`documents/semester-${semester}/${subject}/${file}.md`);
+        this.src.set(`documents/semester-${semesterParam}/${subjectParam}/${file}.md`);
+        this.semester.set(Number.parseInt(semesterParam));
+        this.subject.set(Number.parseInt(subjectParam));
       });
   }
 
@@ -68,6 +69,9 @@ export class Subtopic implements OnInit {
 
   /** Punto de extensión: aquí consultarás el glosario / base de conocimiento. */
   private lookupInGlossary(context: ISelectedTextContext): void {
-    console.log('Glosario:', context.text, '· subtema', context.subjectId);
+    console.log(context);
+    console.log('Glosario:', context.text, '· semestre', context.semester, '· subtema', context.subject);
+    console.log(glossary[context.semester][context.subject]);
+
   }
 }

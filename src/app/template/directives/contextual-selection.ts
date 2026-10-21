@@ -1,12 +1,12 @@
 import { Directive, ElementRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
-import { ContextualSelectionService } from '@template/services/contextual-selection';
+import { ContextualSelectionService, IHostMeta } from '@template/services/contextual-selection';
 
 @Directive({
   selector: '[contextualSelection]',
   standalone: true,
 })
 export class ContextualSelection implements OnInit, OnDestroy {
-  @Input('contextualSelectionSubjectId') public subjectId?: string;
+  @Input('contextualSelectionContext') public context: IHostMeta = {semester: 1, subject: 1};
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly service = inject(ContextualSelectionService);
@@ -14,7 +14,7 @@ export class ContextualSelection implements OnInit, OnDestroy {
   public ngOnInit(): void {
     // El registro es por referencia al host, independiente del HTML interno;
     // por eso sobrevive a los re-render de ngx-markdown sin re-suscribir nada.
-    this.service.register(this.host.nativeElement, this.subjectId);
+    this.service.register(this.host.nativeElement, this.context);
   }
 
   public ngOnDestroy(): void {

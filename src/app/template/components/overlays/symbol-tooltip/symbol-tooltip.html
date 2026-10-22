@@ -1,4 +1,4 @@
-<div [class]="['accent-' + context().accentColor, 'tooltip']" role="tooltip">
+<div [class]="['tooltip', context().theme, 'accent-' + context().accentColor]" role="tooltip">
   @for (definition of definitions(); track definition.command) {
     <div class="tooltip__item">
       <span class="tooltip__reads">{{ definition.reads }}</span>

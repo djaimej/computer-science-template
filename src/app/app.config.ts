@@ -5,6 +5,9 @@ import { routes } from './app.routes';
 import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideMarkdown, MARKED_OPTIONS, KATEX_OPTIONS, MERMAID_OPTIONS } from 'ngx-markdown';
 
+import { SYMBOL_GLOSSARY } from '@template/services/symbol-glossary';
+import { symbols } from '@domain/symbols';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
@@ -16,5 +19,6 @@ export const appConfig: ApplicationConfig = {
       katexOptions: { provide: KATEX_OPTIONS, useValue: { displayMode: true, throwOnError: false, errorColor: '#cc0000', strict: true, fleqn: true } },
       mermaidOptions: { provide: MERMAID_OPTIONS, useValue: { fontFamily: 'PatrickHand', elk: { mergeEdges: false, nodePlacementStrategy: 'NETWORK_SIMPLEX', cycleBreakingStrategy: 'MODEL_ORDER' } } },
     }),
+    { provide: SYMBOL_GLOSSARY, useValue: symbols },
   ]
 };

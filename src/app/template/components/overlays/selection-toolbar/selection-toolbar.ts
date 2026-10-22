@@ -26,7 +26,7 @@ export class SelectionToolbar {
   protected readonly context = this.contextService.context;
 
   public readonly actions: IToolbarAction[] = [
-    { type: ESelectionAction.LOOKUP, label: 'Explicar concepto', icon: OBJECTS_THINGS.bookOpen },
+    { type: ESelectionAction.LOOKUP, label: 'Describir', icon: OBJECTS_THINGS.bookOpen },
   ];
 
   /** Clave UX: evita que el navegador colapse la selección al presionar la barra. */

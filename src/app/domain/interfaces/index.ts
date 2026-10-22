@@ -31,4 +31,8 @@ export interface ISubTopicItem extends IOrderedObject {
     path: string;
 }
 
-
+export interface ISymbolDefinition {
+  command: string;
+  reads: string;
+  description?: string;
+}

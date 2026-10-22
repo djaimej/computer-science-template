@@ -11,10 +11,11 @@ import { ISelectedTextContext } from '@template/models/interfaces';
 import { ContextService } from '@template/services/context';
 import { MarkdownAssetsLoader } from '@template/services/markdown-assets';
 import { glossary } from '@domain/glossary';
+import { MathDefinition } from '@template/directives/math-definition';
 
 @Component({
   selector: 'app-subtopic',
-  imports: [MarkdownComponent, ContextualSelection],
+  imports: [MarkdownComponent, ContextualSelection, MathDefinition ],
   templateUrl: './subtopic.html',
   styleUrl: './subtopic.scss',
   changeDetection: ChangeDetectionStrategy.Eager, // sin cambios (pendiente de la nota del informe)
@@ -69,9 +70,14 @@ export class Subtopic implements OnInit {
 
   /** Punto de extensión: aquí consultarás el glosario / base de conocimiento. */
   private lookupInGlossary(context: ISelectedTextContext): void {
-    console.log(context);
-    console.log('Glosario:', context.text, '· semestre', context.semester, '· subtema', context.subject);
-    console.log(glossary[context.semester][context.subject]);
-
+    if (context.latex) {
+      console.log('latex', context.latex);
+      const commands = [...new Set(context.latex.match(/\\[a-zA-Z]+/g) ?? [])];
+      console.log(commands);
+      // p. ej. "\overleftarrow{AB}" → ["\overleftarrow"]
+      // buscar cada comando en tu glosario de símbolos → "se lee como…"
+      console.log(glossary[context.semester][context.subject]);
+      return;
+    }
   }
 }

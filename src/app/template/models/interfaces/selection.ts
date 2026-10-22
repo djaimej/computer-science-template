@@ -12,6 +12,7 @@ export interface IOption {
  */
 export interface ISelectedTextContext {
   text: string;
+  latex?: string;        // fuente LaTeX cuando la selección intersecta math de KaTeX
   rect: DOMRect;
   range: Range;
   hostElement: HTMLElement;

@@ -143,10 +143,12 @@ export class ContextualSelectionService {
     const rect = range.getBoundingClientRect();
     if (rect.width === 0 && rect.height === 0) return this.clear();
 
+    const latex = this.extractLatex(host.el, range);
     const { contextBefore, contextAfter } = this.extractContext(host.el, range);
 
     this.selection.next({
       text,
+      latex,
       rect,
       range: range.cloneRange(),
       hostElement: host.el,
@@ -188,6 +190,18 @@ export class ContextualSelectionService {
     } catch {
       return {};
     }
+  }
+
+  /** Fuente LaTeX de las expresiones KaTeX que intersecta la selección. */
+  private extractLatex(host: HTMLElement, range: Range): string | undefined {
+    const sources = Array.from(host.querySelectorAll<HTMLElement>('.katex'))
+      .filter((node) => range.intersectsNode(node))
+      .map((node) =>
+        node.querySelector('annotation[encoding="application/x-tex"]')?.textContent?.trim()
+      )
+      .filter((source): source is string => !!source);
+
+    return sources.length ? sources.join(' ') : undefined;
   }
 
   // Overlay (CDK)

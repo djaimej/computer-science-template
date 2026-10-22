@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withXhr()),
     provideMarkdown({
       markedOptions: { provide: MARKED_OPTIONS, useValue: { silent: false, gfm: true, breaks: false, pedantic: false } },
-      katexOptions: { provide: KATEX_OPTIONS, useValue: { displayMode: true, throwOnError: false, errorColor: '#cc0000', strict: true, fleqn: true } },
+      katexOptions: { provide: KATEX_OPTIONS, useValue: { displayMode: true, throwOnError: false, errorColor: '#cc0000', strict: true } },
       mermaidOptions: { provide: MERMAID_OPTIONS, useValue: { fontFamily: 'PatrickHand', elk: { mergeEdges: false, nodePlacementStrategy: 'NETWORK_SIMPLEX', cycleBreakingStrategy: 'MODEL_ORDER' } } },
     }),
     { provide: SYMBOL_GLOSSARY, useValue: symbols },

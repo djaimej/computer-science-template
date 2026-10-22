@@ -4,7 +4,8 @@
   border-radius: 8px;
   background-color: var(--accent-color-light);
   color: #000;
-  font: 400 13px/1.4 system-ui, sans-serif;
+  font-size: var(--size-08);
+  font-family: system-ui, sans-serif;
   user-select: none;
   animation: tooltip-in 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
 
@@ -30,7 +31,6 @@
   &__command {
     flex: 0 0 auto;
     font-family: ui-monospace, monospace;
-    font-size: var(--size-10);
     opacity: 0.9;
   }
 
@@ -45,7 +45,7 @@
   &__desc {
     margin: 2px 0 0;
     opacity: 0.8;
-    font-size: var(--size-10);
+    font-size: 0.8em;
   }
 }
 

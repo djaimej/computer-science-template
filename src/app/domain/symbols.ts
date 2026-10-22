@@ -1,19 +1,27 @@
 import { ISymbolDefinition } from "@template/models/interfaces";
 
+/**
+ * Si `sample` no se define `command` se muestra en su lugar.
+ */
 export const symbols: Record<string, ISymbolDefinition> = {
-  '\\overleftarrow': {
-    command: '\\overleftarrow',
-    reads: 'Flecha hacia la izquierda sobre la expresión',
-    description: 'Vector o segmento orientado hacia la izquierda.',
-    sample: '\\overleftarrow{AB}',
-  },
-  '\\underleftarrow': {
-    command: '\\underleftarrow',
-    reads: 'Flecha hacia la izquierda debajo de la expresión',
-    sample: '\\underleftarrow{AB}',
-  },
   '\\in': {
     command: '\\in',
     reads: 'Pertenece a',
+  },
+  '\\notin': {
+    command: '\\notin',
+    reads: 'No pertenece a',
+  },
+  '\\subset': {
+    command: '\\subset',
+    reads: 'Conjunto',
+  },
+  '\\subseteq': {
+    command: '\\subseteq',
+    reads: 'Subconjunto',
+  },
+  '\\subsetneq': {
+    command: '\\subsetneq',
+    reads: 'Subconjunto propio',
   },
 };

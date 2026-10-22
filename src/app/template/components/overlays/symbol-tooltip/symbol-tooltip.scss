@@ -1,15 +1,41 @@
 .tooltip {
-  max-width: 280px;
+  max-width: 300px;
   padding: 8px 10px;
   border-radius: 8px;
   background-color: var(--accent-color-light);
   color: #000;
   font: 400 13px/1.4 system-ui, sans-serif;
   user-select: none;
-  animation: tooltip-in 120ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: tooltip-in 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
 
   &__item+&__item {
-    margin-top: 6px;
+    margin-top: var(--size-03);
+    padding-top: var(--size-03);
+  }
+
+  &__symbol {
+    flex: 0 0 auto;
+    padding: 0 0.5em;
+    border-radius: var(--size-03);
+    background: var(--background-translucent);
+    color: var(--black);
+  }
+
+  &__command {
+    flex: 0 0 auto;
+    font-family: ui-monospace, monospace;
+    font-size: var(--size-10);
+    opacity: 0.9;
+  }
+
+  &__text {
+    min-width: 0;
   }
 
   &__reads {
@@ -19,7 +45,7 @@
   &__desc {
     margin: 2px 0 0;
     opacity: 0.8;
-    font-size: 12px;
+    font-size: var(--size-10);
   }
 }
 

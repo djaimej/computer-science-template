@@ -1,9 +1,9 @@
 .toolbar {
   display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 4px;
-  border-radius: 10px;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 0.2em 0.5em;
+  border-radius: var(--size-03);
   background-color: var(--accent-color);
   user-select: none;
   -webkit-user-select: none;
@@ -13,23 +13,24 @@
   &__button {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 7px 10px;
+    line-height: 0;
+    gap: 0.5em;
+    padding: 0.5em;
     border: 0;
-    border-radius: 7px;
+    border-radius: var(--size-03);
     background: transparent;
     color: var(--accent-font-color);
     white-space: nowrap;
     cursor: pointer;
     transition: background 0.12s ease;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
   }
 
   &__label {
     font-size: var(--size-08);
+  }
+
+  &:hover {
+    background: var(--accent-color-light);
   }
 }
 

@@ -1,10 +1,17 @@
 <div [class]="['tooltip', context().theme, 'accent-' + context().accentColor]" role="tooltip">
-  @for (definition of definitions(); track definition.command) {
-    <div class="tooltip__item">
-      <span class="tooltip__reads">{{ definition.reads }}</span>
-      @if (definition.description) {
-        <p class="tooltip__desc">{{ definition.description }}</p>
+  @for (item of items(); track item.definition.command) {
+  <div class="tooltip__item">
+    @if (item.symbol) {
+    <span class="tooltip__symbol" [innerHTML]="item.symbol"></span>
+    } @else {
+    <span class="tooltip__symbol" [innerHTML]="item.definition.command"></span>
+    }
+    <div class="tooltip__text">
+      <span class="tooltip__reads">{{ item.definition.reads }}</span>
+      @if (item.definition.description) {
+      <p class="tooltip__desc">{{ item.definition.description }}</p>
       }
     </div>
+  </div>
   }
 </div>

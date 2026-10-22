@@ -1,5 +1,5 @@
 import { inject, Injectable, InjectionToken } from '@angular/core';
-import { ISymbolDefinition } from '@domain/interfaces';
+import { ISymbolDefinition } from '@template/models/interfaces';
 
 export const SYMBOL_GLOSSARY =
   new InjectionToken<Record<string, ISymbolDefinition>>('SYMBOL_GLOSSARY');

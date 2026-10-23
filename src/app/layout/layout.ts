@@ -89,7 +89,10 @@ export class Layout implements OnInit {
   }
 
   private updateNav(url: string): void {
-    if (this.isHome()) return;
+    if (this.isHome()) {
+      this.title.setTitle('Ciencias de la computación');
+      return;
+    }
     this.paths = this.computerScienceService.getAllSubtopicPaths();
     const pathId = url.split('/')[3];
     const index = this.paths.findIndex((path) => path.includes(`/${pathId}`));

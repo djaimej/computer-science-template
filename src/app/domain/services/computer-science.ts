@@ -26,7 +26,7 @@ export class ComputerScienceService {
     const se = Number.parseInt(pathId.charAt(0)) - 1;
     const su = Number.parseInt(pathId.charAt(1)) - 1;
     const subjectName = this.plan.semesters[se].subjects[su].name;
-    return `${subjectName} ${pathId}`;
+    return `Ciencias de la computación - ${subjectName}`;
   }
 
   public getSearchText(): Observable<string | null> {

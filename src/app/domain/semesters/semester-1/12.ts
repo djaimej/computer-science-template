@@ -20,11 +20,11 @@ export const SUBJECT_12: IRawSubject = {
             ]
         },
         {
-            name: 'Inducción y recursion',
+            name: 'Inducción y recursión',
             subtopics: [
                 'Los números naturales: axiomas de Peano, principios de inducción.',
                 'Definiciones recursivas: definición de conjuntos y funciones mediante uso de patrones, ejemplos con estructuras de datos no numéricas (listas, árboles, expresiones lógicas, etc.).',
-                'Inducción estructural: principios de inducción estructural, dualidad entre inducción y recursion, ejemplos de demostración en diversas estructuras.',
+                'Inducción estructural: principios de inducción estructural, dualidad entre inducción y recursión, ejemplos de demostración en diversas estructuras.',
             ]
         },
         {

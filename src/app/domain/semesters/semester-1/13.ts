@@ -42,7 +42,7 @@ export const SUBJECT_13: IRawSubject = {
                 'Listas simples.',
                 'Ciclos y condicionales.',
                 'Arreglos.',
-                'Funciones y recursion.',
+                'Funciones y recursión.',
             ]
         },
         {
@@ -82,7 +82,7 @@ export const SUBJECT_13: IRawSubject = {
             ]
         },
         {
-            name: 'Hilos de ejecución y multi-proceso (threads) ',
+            name: 'Hilos de ejecución y multi-proceso (threads)',
             subtopics: [
                 'Conceptos generales.',
                 'Mecanismos del lenguaje para hilos de ejecución.',

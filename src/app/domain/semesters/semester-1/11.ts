@@ -6,7 +6,7 @@ export const SUBJECT_11: IRawSubject = {
         {
             name: 'Conjuntos',
             subtopics: [
-                'Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal.',
+                'Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío. Conjunto universal.',
                 'Operaciones con conjuntos: unión, intersección, complemento y diferencia.',
                 'Conjunto potencia. Producto cartesiano. Familias de conjuntos.'
             ]
@@ -14,16 +14,16 @@ export const SUBJECT_11: IRawSubject = {
         {
             name: 'Relaciones y funciones',
             subtopics: [
-                'Relaciones (dominio, co-dominio e imagen).',
+                'Relaciones (dominio, codominio e imagen).',
                 'Funciones (imágenes e imágenes inversas).',
                 'Composición de funciones. Función inversa.',
-                'Funciones inyectias, suprayectivas y biyectivas.',
+                'Funciones inyectivas, suprayectivas y biyectivas.',
                 'Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos.',
                 'Relaciones de equivalencia y particiones.'
             ]
         },
         {
-            name: 'Números naturales y cálculo combinatoria',
+            name: 'Números naturales y cálculo combinatorio',
             subtopics: [
                 'Los números naturales. Principio de inducción.',
                 'Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones.',
@@ -33,8 +33,8 @@ export const SUBJECT_11: IRawSubject = {
         {
             name: 'Espacios vectoriales',
             subtopics: [
-                'Los espacios ℝ2 y ℝ3. Interpretación geométrica.',
-                'El espacio vectorial ℝn.',
+                'Los espacios ℝ² y ℝ³. Interpretación geométrica.',
+                'El espacio vectorial ℝⁿ.',
                 'Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores.',
                 'Dependencia e independencia lineal.',
                 'Bases. Dimensión.'

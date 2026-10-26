@@ -28,7 +28,7 @@ export const SUBJECT_34: IRawSubject = {
                     Familias paramétricas discretas y su interpretación.`,
                 `Variables aleatorias continuas (o absolutamente continuas) y funciones de densidad. Familias paramétricas, incluyendo los ejemplos:
                     Uniforme, Normal, Exponencial, Gamma, Cauchy, Beta,
-                    Weibul, Pareto, Frechet, Gumbel, Logística, Gausiana inversa y
+                    Weibull, Pareto, Frechet, Gumbel, Logística, Gaussiana inversa y
                     modelos donde éstas aparecen.`,
                 'Función de distribución de funciones de variables aleatorias.',
                 'Simulación de variables aleatorias.',
@@ -55,7 +55,7 @@ export const SUBJECT_34: IRawSubject = {
                 'Sumas de variables aleatorias independientes.',
                 'Enunciado de algunos teoremas límite: Leyes de los Grandes Números, Teorema de Límite Central.',
                 'Demostración de la ley débil de los grandes números.',
-                'Teorema de Límite Central para la distribución Bernoulli (Teorema de De Movire-Laplace).',
+                'Teorema de Límite Central para la distribución Bernoulli (Teorema de De Moivre-Laplace).',
                 'Contrastar los resultados teóricos con los obtenidos por simulación.',
             ]
         },

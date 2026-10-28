@@ -1,7 +1,7 @@
 <header [class]="[context().theme, 'accent-' + context().accentColor]">
   <nav>
-    <h1 class="nav-tittle" (click)="gotToHome()">
-      CIENCIAS DE LA COMPUTACIÓN
+    <h1 class="nav-tittle">
+      <a (click)="gotToHome()">CIENCIAS DE LA COMPUTACIÓN</a>
     </h1>
     <div class="nav-controls">
       @if (isHome()) {

@@ -58,7 +58,7 @@ export const SUBJECT_44: IRawSubject = {
             subtopics: [
                 'Paralelismo a nivel de instrucción (ILP)',
                 'Diseño de un procesador con cause segmentado',
-                'Conictos (hazards) de control y de datos',
+                'Conflictos (hazards) de control y de datos',
                 'Esquemas de predicción de salto, salto retardado (delayed branch)',
             ]
         },

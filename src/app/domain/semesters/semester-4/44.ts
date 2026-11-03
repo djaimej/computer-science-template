@@ -54,7 +54,7 @@ export const SUBJECT_44: IRawSubject = {
             ]
         },
         {
-            name: 'Cause segmentado de ejecución (pipeline)',
+            name: 'Cauce segmentado de ejecución (pipeline)',
             subtopics: [
                 'Paralelismo a nivel de instrucción (ILP)',
                 'Diseño de un procesador con cause segmentado',

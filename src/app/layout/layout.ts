@@ -74,6 +74,8 @@ export class Layout implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((value) => { if (value === null) this.searchText.set(''); });
 
+    const reviewMode = localStorage.getItem('reviewMode') === 'true';
+
     this.router.events
       .pipe(
         startWith(this.router.url),
@@ -85,6 +87,42 @@ export class Layout implements OnInit {
       .subscribe((url) => {
         this.updateNav(url);
         this.scrollToTop();
+        if (!this.isHome() && reviewMode) {
+          console.clear();
+          console.log(url);
+          setTimeout(() => {
+            console.log('analyzing document...');
+            const katexErrors = document.getElementsByClassName('katex-error').length > 0;
+            const ketexPositionError = document.body.innerText.includes('$');
+            const h1Error = document.getElementsByTagName('h1').length != 2;
+            const h2Error = document.getElementsByTagName('h2').length != 1;
+            const mermaidError = document.querySelectorAll('[aria-roledescription="error"]').length > 0;
+
+            if (katexErrors) {
+              console.error('Error rendering KaTeX. Please check the LaTeX (syntax).');
+            }
+
+            if (ketexPositionError) {
+              console.error('Error rendering KaTeX. Please check the LaTeX (position).');
+            }
+
+            if (h1Error) {
+              console.error('Error. Please check the content (h1).');
+            }
+
+            if (h2Error) {
+              console.error('Error. Please check the content (just an h2).');
+            }
+
+            if (mermaidError) {
+              console.error('Error rendering Mermaid. Please check the Mermaid syntax.');
+            }
+
+            if (!katexErrors && !ketexPositionError && !h2Error && !h1Error && !mermaidError) {
+              this.next();
+            }
+          }, 3000);
+        }
       });
   }
 
